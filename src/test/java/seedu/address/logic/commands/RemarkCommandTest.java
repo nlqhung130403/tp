@@ -1,31 +1,39 @@
 package seedu.address.logic.commands;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.parser.AddressBookParser;
+
+import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
+import seedu.address.testutil.PersonBuilder;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.logic.commands.RemarkCommand.MESSAGE_ARGUMENTS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 public class RemarkCommandTest {
-    private Model model = new ModelManager();
-    private final AddressBookParser parser = new AddressBookParser();
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute() {
         final String remark = "Some remark";
-        assertCommandFailure(new RemarkCommand(INDEX_FIRST_PERSON, remark), model,
-                String.format(MESSAGE_ARGUMENTS, INDEX_FIRST_PERSON.getOneBased(), remark));
-    }
-
-    @Test
-    public void parseCommand_remark() throws Exception {
-        assertTrue(parser.parseCommand(RemarkCommand.COMMAND_WORD) instanceof RemarkCommand);
+        Person editedPerson = new PersonBuilder()
+                .withName(ALICE.getName().toString())
+                .withAddress(ALICE.getAddress().value)
+                .withEmail(ALICE.getEmail().value)
+                .withTags("friends")
+                .withPhone(ALICE.getPhone().value)
+                .withRemark(remark)
+                .build();
+        RemarkCommand command = new RemarkCommand(INDEX_FIRST_PERSON, remark);
+        String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, Messages.format(editedPerson));
+        assertCommandSuccess(command, model, expectedMessage, model);
     }
 
     @Test
