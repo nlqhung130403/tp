@@ -41,11 +41,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Ding Zhe
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/dingzvel.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/dingZvel)]
 [[portfolio](team/sherrinfordhr)]
 
 * Role: Developer
