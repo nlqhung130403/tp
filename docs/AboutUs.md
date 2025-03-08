@@ -11,15 +11,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Yong Jun Xi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tobycyan.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/sherrinfordhr)]
+[[github](https://github.com/tobycyan)]
+[[portfolio](team/tobycyan)]
 
-* Role: Project Advisor
+* Role: Team Lead
+* Responsibilities: Development
 
 ### Dingwei
 
