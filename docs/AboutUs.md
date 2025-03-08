@@ -15,17 +15,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/tobycyan.png" width="200px">
 
-<<<<<<< HEAD
 [[github](https://github.com/tobycyan)]
-[[portfolio](team/johndoe.md)]
-=======
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/sherrinfordhr)]
->>>>>>> 163a4416047ca6e09005952f423f8cc50f6724a8
+[[portfolio](team/tobycyan)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Team Lead
+* Responsibilities: Development
 
 ### Dingwei
 
