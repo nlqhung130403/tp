@@ -17,25 +17,26 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/sherrinfordhr)]
 
 * Role: Project Advisor
 
-### Jane Doe
+### Dingwei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sherrinfordhr.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/SherrinfordHR)]
+[[portfolio](team/sherrinfordhr.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Develop ops
+* Y2, Computer Science,  love anime, gaming and novel
 
 ### Johnny Doe
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/johndoe)] [[portfolio](team/sherrinfordhr)]
 
 * Role: Developer
 * Responsibilities: Data
@@ -45,17 +46,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/sherrinfordhr)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Nguyen Le Quoc Hung
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nlqhung130403.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/nlqhung130403)]
+[[portfolio](team/nlqhung130403.md)]
 
 * Role: Developer
 * Responsibilities: UI
