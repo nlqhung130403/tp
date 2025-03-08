@@ -51,12 +51,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Nguyen Le Quoc Hung
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nlqhung130403.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/sherrinfordhr)]
+[[github](http://github.com/nlqhung130403)]
+[[portfolio](team/nlqhung130403.md)]
 
 * Role: Developer
 * Responsibilities: UI
