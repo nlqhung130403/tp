@@ -343,7 +343,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **CSV file**: Comma-separated values, a plain text file format that stores data in a table-like structure. Can be opened using Microsoft Excel or be imported to other supported applications.
 * **Main features**: The main features of this application, including _list_, _add_, _delete_, etc.
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Salesperson**: Anyone who is selling things and has the need to note down customers' information.
+* **Salesperson**: Anyone who is selling things and has the need to note down clients' information.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
