@@ -103,7 +103,7 @@ How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to delete a client).<br>
+1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
@@ -176,11 +176,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 <puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
 
-Step 2. The user executes `delete 5` command to delete the 5th client in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 <puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
 
-Step 3. The user executes `add n/David …​` to add a new client. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 <puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
 
@@ -190,7 +190,7 @@ Step 3. The user executes `add n/David …​` to add a new client. The `add` co
 
 </box>
 
-Step 4. The user now decides that adding the client was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 <puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
 
@@ -246,7 +246,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the client being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -291,8 +291,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |----------|-------------------------------------------------------|--------------------------------------------------------------------------|--------------------------------------------------------------------------------|
 | `* * *`  | salesperson                                           | add in my clients’ contact details                                       | contact them for business purposes                                             |
 | `* * *`  | salesperson                                           | edit my clients’ contact details                                         | keep their information updated and relevant                                    |
-| `* * *`  | salesperson                                           | delete a client                                                          | get rid of contact information that I don’t need anymore                       |
-| `* * *`  | salesperson                                           | find my clients’ info quickly in a large database                        | locate contact details of clients without having to go through the entire list |
+| `* * *`  | salesperson                                           | delete a person                                                          | get rid of contact information that I don’t need anymore                       |
+| `* * *`  | salesperson                                           | find my clients’ info quickly in a large database                        | locate contact details of persons without having to go through the entire list |
 | `* * *`  | salesperson who wants to know my customer preferences | rank my clients based on the most purchased product type                 | find out who my potential customers are for a given product                    |
 | `* * *`  | new user                                              | view examples for the main features                                      | get on board with the application more easily                                  |
 | `* *`    | user                                                  | be able to expand out the client information                             | view it with a bigger window                                                   |
@@ -326,7 +326,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User enters the command to add a client.
 2.  ClientConnect validates the input format and checks that all required fields are present.
-3.  ClientConnect adds the client to the address book.
+3.  ClientConnect adds the person to the address book.
 4.  ClientConnect displays a confirmation message showing the newly added contact details.
 
 
@@ -365,9 +365,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  ClientConnect displays the full list of clients. 
 3.  User enters the command to delete a client. 
 4.  ClientConnect validates the command. 
-5.  ClientConnect retrieves the details of the client at the specified index. 
-6.  ClientConnect deletes the client's details from the address book. 
-7.  ClientConnect displays a success message:”Deleted: <Info of the deleted client>”
+5.  ClientConnect retrieves the details of the person at the specified index. 
+6.  ClientConnect deletes the person's details from the address book. 
+7.  ClientConnect displays a success message:”Deleted: <Info of the deleted person>”
 
 
     Use case ends.
@@ -383,7 +383,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 clients without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  The user interface should be minimalist and intuitive so that even users who are not tech-savvy can use with ease.
 5.  All operations should take less than 1s to finish and display the results.
@@ -432,17 +432,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a client
+### Deleting a person
 
-1. Deleting a client while all clients are being shown
+1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No client is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
