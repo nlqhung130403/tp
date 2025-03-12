@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import seedu.address.model.client.predicates.CategoryContainsKeywordsPredicate;
 import seedu.address.testutil.PersonBuilder;
 
 

@@ -1,6 +1,6 @@
 package stub.model.client;
 
-import seedu.address.model.client.CategoryContainsKeywordsPredicate;
+import seedu.address.model.client.predicates.CategoryContainsKeywordsPredicate;
 import seedu.address.model.client.Client;
 
 import java.util.List;

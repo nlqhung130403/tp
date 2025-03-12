@@ -1,7 +1,7 @@
 package stub.model.client;
 
 import seedu.address.model.client.Client;
-import seedu.address.model.client.ProductPreferenceContainsKeywordsPredicate;
+import seedu.address.model.client.predicates.ProductPreferenceContainsKeywordsPredicate;
 
 import java.util.List;
 

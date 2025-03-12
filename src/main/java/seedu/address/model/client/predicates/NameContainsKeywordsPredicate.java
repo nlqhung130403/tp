@@ -1,18 +1,19 @@
-package seedu.address.model.client;
+package seedu.address.model.client.predicates;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.client.Client;
 
 /**
- * Tests that a {@code Client}'s {@code Product Preference} matches any of the keywords given.
+ * Tests that a {@code Client}'s {@code Name} matches any of the keywords given.
  */
-public class ProductPreferenceContainsKeywordsPredicate implements Predicate<Client> {
+public class NameContainsKeywordsPredicate implements Predicate<Client> {
     private final List<String> keywords;
 
-    public ProductPreferenceContainsKeywordsPredicate(List<String> keywords) {
+    public NameContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -29,13 +30,12 @@ public class ProductPreferenceContainsKeywordsPredicate implements Predicate<Cli
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ProductPreferenceContainsKeywordsPredicate)) {
+        if (!(other instanceof NameContainsKeywordsPredicate)) {
             return false;
         }
 
-        ProductPreferenceContainsKeywordsPredicate otherProductPreferenceContainsKeywordsPredicate =
-                (ProductPreferenceContainsKeywordsPredicate) other;
-        return keywords.equals(otherProductPreferenceContainsKeywordsPredicate.keywords);
+        NameContainsKeywordsPredicate otherNameContainsKeywordsPredicate = (NameContainsKeywordsPredicate) other;
+        return keywords.equals(otherNameContainsKeywordsPredicate.keywords);
     }
 
     @Override

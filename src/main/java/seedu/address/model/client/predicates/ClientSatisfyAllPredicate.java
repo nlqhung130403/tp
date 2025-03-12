@@ -1,11 +1,11 @@
-package seedu.address.model.client;
+package seedu.address.model.client.predicates;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.client.Client;
 
 /**
  * Tests that a {@code Client} satisfies any of the predicate given.

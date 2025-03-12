@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import seedu.address.model.client.predicates.ClientSatisfyAllPredicate;
 import seedu.address.testutil.PersonBuilder;
 
 import org.junit.jupiter.api.Test;
