@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
 /**
  * A utility class for Person.
  */
-public class ClientUtil {
+public class PersonUtil {
 
     /**
      * Returns an add command string for adding the {@code person}.

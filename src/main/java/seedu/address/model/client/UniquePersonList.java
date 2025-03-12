@@ -8,6 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.client.exceptions.DuplicatePersonException;
+import seedu.address.model.client.exceptions.PersonNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -20,7 +22,7 @@ import javafx.collections.ObservableList;
  *
  * @see Client#isSamePerson(Client)
  */
-public class UniqueClientList implements Iterable<Client> {
+public class UniquePersonList implements Iterable<Client> {
 
     private final ObservableList<Client> internalList = FXCollections.observableArrayList();
     private final ObservableList<Client> internalUnmodifiableList =
@@ -41,7 +43,7 @@ public class UniqueClientList implements Iterable<Client> {
     public void add(Client toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new seedu.address.model.client.exceptions.DuplicateClientException();
+            throw new DuplicatePersonException();
         }
         internalList.add(toAdd);
     }
@@ -56,11 +58,11 @@ public class UniqueClientList implements Iterable<Client> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new seedu.address.model.client.exceptions.ClientNotFoundException();
+            throw new PersonNotFoundException();
         }
 
         if (!target.isSamePerson(editedClient) && contains(editedClient)) {
-            throw new seedu.address.model.client.exceptions.DuplicateClientException();
+            throw new DuplicatePersonException();
         }
 
         internalList.set(index, editedClient);
@@ -73,11 +75,11 @@ public class UniqueClientList implements Iterable<Client> {
     public void remove(Client toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new seedu.address.model.client.exceptions.ClientNotFoundException();
+            throw new PersonNotFoundException();
         }
     }
 
-    public void setPersons(UniqueClientList replacement) {
+    public void setPersons(UniquePersonList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -89,7 +91,7 @@ public class UniqueClientList implements Iterable<Client> {
     public void setPersons(List<Client> clients) {
         requireAllNonNull(clients);
         if (!personsAreUnique(clients)) {
-            throw new seedu.address.model.client.exceptions.DuplicateClientException();
+            throw new DuplicatePersonException();
         }
 
         internalList.setAll(clients);
@@ -114,12 +116,12 @@ public class UniqueClientList implements Iterable<Client> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof UniqueClientList)) {
+        if (!(other instanceof UniquePersonList)) {
             return false;
         }
 
-        UniqueClientList otherUniqueClientList = (UniqueClientList) other;
-        return internalList.equals(otherUniqueClientList.internalList);
+        UniquePersonList otherUniquePersonList = (UniquePersonList) other;
+        return internalList.equals(otherUniquePersonList.internalList);
     }
 
     @Override

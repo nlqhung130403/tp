@@ -13,9 +13,9 @@ import seedu.address.model.client.Client;
 /**
  * Panel containing the list of persons.
  */
-public class ClientListPanel extends UiPart<Region> {
+public class PersonListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(ClientListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
     @FXML
     private ListView<Client> personListView;
@@ -23,7 +23,7 @@ public class ClientListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public ClientListPanel(ObservableList<Client> clientList) {
+    public PersonListPanel(ObservableList<Client> clientList) {
         super(FXML);
         personListView.setItems(clientList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
@@ -41,7 +41,7 @@ public class ClientListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new ClientCard(client, getIndex() + 1).getRoot());
+                setGraphic(new PersonCard(client, getIndex() + 1).getRoot());
             }
         }
     }
