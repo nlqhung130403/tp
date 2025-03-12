@@ -1,5 +1,8 @@
 package seedu.address.model.client;
 
+/**
+ * Represents a Client's product preference in the address book.
+ */
 public class ProductPreference {
     public final String productPreference;
 

@@ -1,5 +1,8 @@
 package seedu.address.model.client;
 
+/**
+ * Represents a Client's frequency of product purchasing.
+ */
 public class Frequency {
     public static final String MESSAGE_CONSTRAINTS = "Frequency should be a non-negative integer";
 
