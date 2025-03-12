@@ -19,13 +19,14 @@ public class CategoryContainsKeywordsPredicate implements Predicate<Client> {
 
     @Override
     public boolean test(Client client) {
-        Set<String> tagStrings = client.getTags()
+        Set<String> categoryStrings = client.getTags()
                 .stream()
                 .map(tag -> tag.tagName)
                 .collect(Collectors.toSet());
 
         return keywords.stream()
-                .anyMatch(tagStrings::contains);
+                .anyMatch(keyword -> categoryStrings.stream()
+                        .anyMatch(keyword::equalsIgnoreCase));
     }
 
     @Override
