@@ -7,12 +7,12 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
 
 /**
- * Tests that a {@code Client}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Client}'s {@code Product Preference} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Client> {
+public class ProductPreferenceContainsKeywordsPredicate implements Predicate<Client> {
     private final List<String> keywords;
 
-    public NameContainsKeywordsPredicate(List<String> keywords) {
+    public ProductPreferenceContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -29,12 +29,13 @@ public class NameContainsKeywordsPredicate implements Predicate<Client> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof NameContainsKeywordsPredicate)) {
+        if (!(other instanceof ProductPreferenceContainsKeywordsPredicate)) {
             return false;
         }
 
-        NameContainsKeywordsPredicate otherNameContainsKeywordsPredicate = (NameContainsKeywordsPredicate) other;
-        return keywords.equals(otherNameContainsKeywordsPredicate.keywords);
+        ProductPreferenceContainsKeywordsPredicate otherProductPreferenceContainsKeywordsPredicate =
+                (ProductPreferenceContainsKeywordsPredicate) other;
+        return keywords.equals(otherProductPreferenceContainsKeywordsPredicate.keywords);
     }
 
     @Override
