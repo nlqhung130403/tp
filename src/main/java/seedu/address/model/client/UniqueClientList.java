@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.client.exceptions.DuplicatePersonException;
-import seedu.address.model.client.exceptions.PersonNotFoundException;
+import seedu.address.model.client.exceptions.ClientNotFoundException;
+import seedu.address.model.client.exceptions.DuplicateClientException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -22,7 +22,7 @@ import seedu.address.model.client.exceptions.PersonNotFoundException;
  *
  * @see Client#isSamePerson(Client)
  */
-public class UniquePersonList implements Iterable<Client> {
+public class UniqueClientList implements Iterable<Client> {
 
     private final ObservableList<Client> internalList = FXCollections.observableArrayList();
     private final ObservableList<Client> internalUnmodifiableList =
@@ -43,7 +43,7 @@ public class UniquePersonList implements Iterable<Client> {
     public void add(Client toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateClientException();
         }
         internalList.add(toAdd);
     }
@@ -58,11 +58,11 @@ public class UniquePersonList implements Iterable<Client> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new ClientNotFoundException();
         }
 
         if (!target.isSamePerson(editedClient) && contains(editedClient)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateClientException();
         }
 
         internalList.set(index, editedClient);
@@ -75,11 +75,11 @@ public class UniquePersonList implements Iterable<Client> {
     public void remove(Client toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new ClientNotFoundException();
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setPersons(UniqueClientList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -91,7 +91,7 @@ public class UniquePersonList implements Iterable<Client> {
     public void setPersons(List<Client> clients) {
         requireAllNonNull(clients);
         if (!personsAreUnique(clients)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateClientException();
         }
 
         internalList.setAll(clients);
@@ -116,12 +116,12 @@ public class UniquePersonList implements Iterable<Client> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof UniquePersonList)) {
+        if (!(other instanceof UniqueClientList)) {
             return false;
         }
 
-        UniquePersonList otherUniquePersonList = (UniquePersonList) other;
-        return internalList.equals(otherUniquePersonList.internalList);
+        UniqueClientList otherUniqueClientList = (UniqueClientList) other;
+        return internalList.equals(otherUniqueClientList.internalList);
     }
 
     @Override
