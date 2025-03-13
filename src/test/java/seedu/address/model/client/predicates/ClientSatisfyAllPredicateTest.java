@@ -1,4 +1,4 @@
-package seedu.address.model.client;
+package seedu.address.model.client.predicates;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import seedu.address.model.client.predicates.ClientSatisfyAllPredicate;
 import seedu.address.testutil.ClientBuilder;
 
 import org.junit.jupiter.api.Test;

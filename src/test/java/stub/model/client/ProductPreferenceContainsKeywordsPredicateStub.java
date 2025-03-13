@@ -20,5 +20,4 @@ public class ProductPreferenceContainsKeywordsPredicateStub extends ProductPrefe
     public boolean test(Client client) {
         return returnValue;
     }
-
 }

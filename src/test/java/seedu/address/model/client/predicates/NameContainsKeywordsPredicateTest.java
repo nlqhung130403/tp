@@ -1,4 +1,4 @@
-package seedu.address.model.client;
+package seedu.address.model.client.predicates;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -10,7 +10,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.client.predicates.NameContainsKeywordsPredicate;
 import seedu.address.testutil.ClientBuilder;
 
 public class NameContainsKeywordsPredicateTest {

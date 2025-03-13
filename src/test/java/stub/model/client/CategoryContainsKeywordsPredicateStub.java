@@ -20,5 +20,4 @@ public class CategoryContainsKeywordsPredicateStub extends CategoryContainsKeywo
     public boolean test(Client client) {
         return returnValue;
     }
-
 }

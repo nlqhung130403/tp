@@ -20,5 +20,4 @@ public class NameContainsKeywordsPredicateStub extends NameContainsKeywordsPredi
     public boolean test(Client client) {
         return returnValue;
     }
-
 }
