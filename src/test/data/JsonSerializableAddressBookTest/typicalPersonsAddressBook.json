@@ -5,42 +5,56 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "tags" : [ "friends" ]
+    "tags" : [ "friends" ],
+    "productPreference" : "shampoo",
+    "frequency" : 0
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tags" : [ "owesMoney", "friends" ]
+    "tags" : [ "owesMoney", "friends" ],
+    "productPreference" : "cherry shampoo",
+    "frequency" : 0
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
-    "tags" : [ ]
+    "tags" : [ ],
+    "productPreference" : "coffee book",
+    "frequency" : 0
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
-    "tags" : [ "friends" ]
+    "tags" : [ "friends" ],
+    "productPreference" : "recipe book",
+    "frequency" : 0
   }, {
     "name" : "Elle Meyer",
     "phone" : "19482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
-    "tags" : [ ]
+    "tags" : [ ],
+    "productPreference" : "tea cup",
+    "frequency" : 0
   }, {
     "name" : "Fiona Kunz",
     "phone" : "19482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
-    "tags" : [ ]
+    "tags" : [ ],
+    "productPreference" : "coffee cup",
+    "frequency" : 0
   }, {
     "name" : "George Best",
     "phone" : "19482442",
     "email" : "anna@example.com",
     "address" : "4th street",
-    "tags" : [ ]
+    "tags" : [ ],
+    "productPreference" : "tea bag",
+    "frequency" : 0
   } ]
 }
