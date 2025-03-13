@@ -1,9 +1,10 @@
 package stub.model.client;
 
+import java.util.List;
+
 import seedu.address.model.client.Client;
 import seedu.address.model.client.predicates.NameContainsKeywordsPredicate;
 
-import java.util.List;
 
 /**
  * Returns whatever boolean return value is required for this stub.
@@ -11,6 +12,12 @@ import java.util.List;
 public class NameContainsKeywordsPredicateStub extends NameContainsKeywordsPredicate {
     private final boolean returnValue;
 
+    /**
+     * Initializes the stub for the NameContainsKeywordsPredicate class.
+     *
+     * @param keywords the keywords to find.
+     * @param returnValue the defined return value when tested.
+     */
     public NameContainsKeywordsPredicateStub(List<String> keywords, boolean returnValue) {
         super(keywords);
         this.returnValue = returnValue;
