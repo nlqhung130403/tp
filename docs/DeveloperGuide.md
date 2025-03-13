@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# ClientConnect Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -354,7 +354,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a: If the command input is not recognized (e.g., due to a typo), AB3 displays: “I do not understand your command, please try again.”
+* 2a: If the command input is not recognized (e.g., due to a typo), ClientConnect displays: “I do not understand your command, please try again.”
 * 3a: If no entities are found (i.e., the address book is empty), ClientConnect displays the message: “Your list is empty.”
 
 **Use case: Delete a client**
@@ -379,6 +379,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 5a: If the provided <index> is not within the range of the list size, ClientConnect displays: “Please provide a valid index for the entry.”
 * 5a: If the address book is empty when the command is executed, ClientConnect displays an error message: “Your list is empty.”
 
+**Use case: find a client**
+
+**MSS**
+
+1.  User enters the command to find a list of clients that contains the keyword.
+2.  ClientConnect validates the command.
+3.  ClientConnect retrieves the information of clients that contains that specified keyword in their descriptions.
+4.  ClientConnect displays the list of clients.
+
+
+    Use case ends.
+
+**Extensions**
+
+* 2a: If the command input is not recognised, ClientConnect displays: “I do not understand your command, please try again.”
+* 3a: If there is no client found with <keyword>, ClientConnect displays: "No client found with <keyword>."
 
 ### Non-Functional Requirements
 
@@ -401,6 +417,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Salesperson**: Anyone who is selling things and has the need to note down clients' information.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Product Preference**: A specific product or category of products that a client is interested in.
 
 --------------------------------------------------------------------------------------------------------------------
 
