@@ -11,7 +11,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import seedu.address.model.client.predicates.CategoryContainsKeywordsPredicate;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.ClientBuilder;
 
 
 public class CategoryContainsKeywordPredicateTest {
@@ -48,19 +48,19 @@ public class CategoryContainsKeywordPredicateTest {
         // One keyword
         CategoryContainsKeywordsPredicate predicate =
                 new CategoryContainsKeywordsPredicate(Collections.singletonList("VIP"));
-        assertTrue(predicate.test(new PersonBuilder().withTags("VIP", "friend").build()));
+        assertTrue(predicate.test(new ClientBuilder().withTags("VIP", "friend").build()));
 
         // Multiple keywords
         predicate = new CategoryContainsKeywordsPredicate(Arrays.asList("VIP", "friend"));
-        assertTrue(predicate.test(new PersonBuilder().withTags("VIP", "friend").build()));
+        assertTrue(predicate.test(new ClientBuilder().withTags("VIP", "friend").build()));
 
         // Only one matching keyword
         predicate = new CategoryContainsKeywordsPredicate(Arrays.asList("business", "friend"));
-        assertTrue(predicate.test(new PersonBuilder().withTags("VIP", "friend").build()));
+        assertTrue(predicate.test(new ClientBuilder().withTags("VIP", "friend").build()));
 
         // Mixed-case keywords
         predicate = new CategoryContainsKeywordsPredicate(Arrays.asList("bUsInesS", "FriEnD"));
-        assertTrue(predicate.test(new PersonBuilder().withTags("business", "friend").build()));
+        assertTrue(predicate.test(new ClientBuilder().withTags("business", "friend").build()));
     }
 
     @Test
@@ -68,16 +68,16 @@ public class CategoryContainsKeywordPredicateTest {
         // Zero keywords
         CategoryContainsKeywordsPredicate predicate =
                 new CategoryContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new PersonBuilder().withTags("business", "friend").build()));
+        assertFalse(predicate.test(new ClientBuilder().withTags("business", "friend").build()));
 
         // Non-matching keyword
         predicate = new CategoryContainsKeywordsPredicate(Arrays.asList("VIP"));
-        assertFalse(predicate.test(new PersonBuilder().withTags("business", "friend").build()));
+        assertFalse(predicate.test(new ClientBuilder().withTags("business", "friend").build()));
 
         // Keywords match name, phone, email and address, but does not match category
-        predicate = new CategoryContainsKeywordsPredicate(Arrays.asList("Alice","12345", "alice@email.com",
+        predicate = new CategoryContainsKeywordsPredicate(Arrays.asList("Alice","12345678", "alice@email.com",
                 "Main", "Street"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
+        assertFalse(predicate.test(new ClientBuilder().withName("Alice").withPhone("12345678")
                 .withEmail("alice@email.com").withAddress("Main Street").withTags("business", "VIP").build()));
     }
 

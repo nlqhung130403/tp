@@ -10,7 +10,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import seedu.address.model.client.predicates.ProductPreferenceContainsKeywordsPredicate;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.ClientBuilder;
 
 public class ProductPreferenceContainsKeywordsPredicateTest {
     @Test
@@ -45,20 +45,20 @@ public class ProductPreferenceContainsKeywordsPredicateTest {
     public void test_productPreferenceContainsKeywords_returnsTrue() {
         // One keyword
         ProductPreferenceContainsKeywordsPredicate predicate =
-                new ProductPreferenceContainsKeywordsPredicate(Collections.singletonList("Alice"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+                new ProductPreferenceContainsKeywordsPredicate(Collections.singletonList("Book"));
+        assertTrue(predicate.test(new ClientBuilder().withProductPreference("Fiction Book").build()));
 
         // Multiple keywords
-        predicate = new ProductPreferenceContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+        predicate = new ProductPreferenceContainsKeywordsPredicate(Arrays.asList("Book", "Coffee"));
+        assertTrue(predicate.test(new ClientBuilder().withProductPreference("Coffee Book").build()));
 
         // Only one matching keyword
-        predicate = new ProductPreferenceContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Carol").build()));
+        predicate = new ProductPreferenceContainsKeywordsPredicate(Arrays.asList("Book", "Coffee"));
+        assertTrue(predicate.test(new ClientBuilder().withProductPreference("Recipe Book").build()));
 
         // Mixed-case keywords
-        predicate = new ProductPreferenceContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+        predicate = new ProductPreferenceContainsKeywordsPredicate(Arrays.asList("BOoK", "CoFFeE"));
+        assertTrue(predicate.test(new ClientBuilder().withProductPreference("Coffee Book").build()));
     }
 
     @Test
@@ -66,18 +66,18 @@ public class ProductPreferenceContainsKeywordsPredicateTest {
         // Zero keywords
         ProductPreferenceContainsKeywordsPredicate predicate =
                 new ProductPreferenceContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").build()));
+        assertFalse(predicate.test(new ClientBuilder().withProductPreference("Coffee").build()));
 
         // Non-matching keyword
-        predicate = new ProductPreferenceContainsKeywordsPredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+        predicate = new ProductPreferenceContainsKeywordsPredicate(Collections.singletonList("Book"));
+        assertFalse(predicate.test(new ClientBuilder().withProductPreference("Coffee Coaster").build()));
 
-        // Keywords match phone, email and address, but does not match name
+        // Keywords match name, phone, email and address, but does not match product preference
         predicate = new ProductPreferenceContainsKeywordsPredicate(
-                Arrays.asList("12345", "alice@email.com", "Main", "Street")
+                Arrays.asList("Alice", "12345678", "alice@email.com", "Main", "Street")
         );
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withAddress("Main Street").build()));
+        assertFalse(predicate.test(new ClientBuilder().withName("Alice").withPhone("12345678")
+                .withEmail("alice@email.com").withAddress("Main Street").withProductPreference("Shampoo").build()));
     }
 
     @Test

@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.List;
 
 import seedu.address.model.client.predicates.ClientSatisfyAllPredicate;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.ClientBuilder;
 
 import org.junit.jupiter.api.Test;
 import stub.model.client.CategoryContainsKeywordsPredicateStub;
@@ -60,16 +60,16 @@ public class ClientSatisfyAllPredicateTest {
         // One predicate true
         ClientSatisfyAllPredicate predicate = new ClientSatisfyAllPredicate(Collections.singletonList("Alice"),
                 List.of(namePredicateStubTrue, categoryPredicateStubFalse, productPrefPredicateStubFalse));
-        assertTrue(predicate.test(new PersonBuilder().build()));
+        assertTrue(predicate.test(new ClientBuilder().build()));
 
         // Multiple predicate true
         predicate = new ClientSatisfyAllPredicate(Collections.singletonList("Alice"),
                 List.of(namePredicateStubTrue, categoryPredicateStubTrue, productPrefPredicateStubFalse));
-        assertTrue(predicate.test(new PersonBuilder().build()));
+        assertTrue(predicate.test(new ClientBuilder().build()));
 
         predicate = new ClientSatisfyAllPredicate(Collections.singletonList("Alice"),
                 List.of(namePredicateStubTrue, categoryPredicateStubTrue, productPrefPredicateStubTrue));
-        assertTrue(predicate.test(new PersonBuilder().build()));
+        assertTrue(predicate.test(new ClientBuilder().build()));
     }
 
     @Test
@@ -84,7 +84,7 @@ public class ClientSatisfyAllPredicateTest {
         // Zero predicate true
         ClientSatisfyAllPredicate predicate = new ClientSatisfyAllPredicate(Collections.emptyList(),
                 List.of(namePredicateStubFalse, categoryPredicateStubFalse, productPrefPredicateStubFalse));
-        assertFalse(predicate.test(new PersonBuilder().build()));
+        assertFalse(predicate.test(new ClientBuilder().build()));
     }
 
     @Test

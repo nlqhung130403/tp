@@ -3,11 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.client.Address;
-import seedu.address.model.client.Client;
-import seedu.address.model.client.Email;
-import seedu.address.model.client.Name;
-import seedu.address.model.client.Phone;
+import seedu.address.model.client.*;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -20,12 +16,16 @@ public class ClientBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_PRODUCT_PREFERENCE = "Shampoo";
+    public static final int DEFAULT_FREQUENCY = 0;
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private ProductPreference productPreference;
+    private Frequency frequency;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -36,10 +36,12 @@ public class ClientBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        productPreference = new ProductPreference(DEFAULT_PRODUCT_PREFERENCE);
+        frequency = new Frequency(DEFAULT_FREQUENCY);
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the ClientBuilder with the data of {@code clientToCopy}.
      */
     public ClientBuilder(Client clientToCopy) {
         name = clientToCopy.getName();
@@ -47,10 +49,12 @@ public class ClientBuilder {
         email = clientToCopy.getEmail();
         address = clientToCopy.getAddress();
         tags = new HashSet<>(clientToCopy.getTags());
+        productPreference = clientToCopy.getProductPreference();
+        frequency = clientToCopy.getFrequency();
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Client} that we are building.
      */
     public ClientBuilder withName(String name) {
         this.name = new Name(name);
@@ -58,7 +62,7 @@ public class ClientBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Client} that we are building.
      */
     public ClientBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
@@ -66,7 +70,7 @@ public class ClientBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Address} of the {@code Client} that we are building.
      */
     public ClientBuilder withAddress(String address) {
         this.address = new Address(address);
@@ -74,7 +78,7 @@ public class ClientBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Phone} of the {@code Client} that we are building.
      */
     public ClientBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
@@ -82,15 +86,23 @@ public class ClientBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Email} of the {@code Client} that we are building.
      */
     public ClientBuilder withEmail(String email) {
         this.email = new Email(email);
         return this;
     }
 
+    /**
+     * Sets the {@code Product Preference} of the {@code Client} that we are building.
+     */
+    public ClientBuilder withProductPreference(String productPreference) {
+        this.productPreference = new ProductPreference(productPreference);
+        return this;
+    }
+
     public Client build() {
-        return new Client(name, phone, email, address, tags);
+        return new Client(name, phone, email, address, tags, frequency, productPreference);
     }
 
 }

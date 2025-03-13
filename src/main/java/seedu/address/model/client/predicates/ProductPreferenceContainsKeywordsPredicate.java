@@ -20,7 +20,9 @@ public class ProductPreferenceContainsKeywordsPredicate implements Predicate<Cli
     @Override
     public boolean test(Client client) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(client.getName().fullName, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
+                        client.getProductPreference().toString(),
+                        keyword));
     }
 
     @Override
