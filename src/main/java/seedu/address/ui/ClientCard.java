@@ -40,9 +40,11 @@ public class ClientCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private FlowPane productPreferenceWithFrequency;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code ClientCode} with the given {@code Client} and index to display.
      */
     public ClientCard(Client client, int displayedIndex) {
         super(FXML);
@@ -55,5 +57,7 @@ public class ClientCard extends UiPart<Region> {
         client.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        productPreferenceWithFrequency.getChildren()
+                .add(new Label(client.getProductPreference().toString() + ": " + client.getFrequency().frequency));
     }
 }
