@@ -134,6 +134,10 @@ Examples:
 
 * `find shampoo` returns `Shampoo` and `Cherry Shampoo` in the product preference
   ![result for 'find shampoo'](images/findShampoo.png)
+
+* `find classmates` returns `classmates` in the category
+![result for 'find shampoo'](images/findClassmate.png)
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
