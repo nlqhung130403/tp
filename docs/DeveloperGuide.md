@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# ClientConnect Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -294,13 +294,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | salesperson                                           | delete a person                                                          | get rid of contact information that I don’t need anymore                       |
 | `* * *`  | salesperson                                           | find my clients’ info quickly in a large database                        | locate contact details of persons without having to go through the entire list |
 | `* * *`  | salesperson who wants to know my customer preferences | rank my clients based on the most purchased product type                 | find out who my potential customers are for a given product                    |
+| `* * *`  | salesperson                                           | keep track on clients' frequency of purchase                             | personalise advertisement and services                                         |
+| `* * *`  | salesperson                                           | keep track of clients' product preferences                               | promote new products to clients that are more likely to be interested in       |
 | `* * *`  | new user                                              | view examples for the main features                                      | get on board with the application more easily                                  |
 | `* *`    | user                                                  | be able to expand out the client information                             | view it with a bigger window                                                   |
 | `* *`    | user                                                  | undo all my previously executed commands                                 | revert changes without having to manually type in a long command               |
 | `* *`    | user                                                  | search for clients by name, phone number, or tag                         | quickly retrieve their information without scrolling through the entire list   |
 | `* *`    | salesperson                                           | add profile pictures for my clients                                      | quickly recognize them and personalize my interactions                         |
 | `* *`    | salesperson                                           | add social media links to client profiles                                | easily connect with them on different platforms                                |
-| `* *`    | salesperson whose clients are of different statuses   | categorize clients into different groups (e.g., VIP, Potential, Regular) | manage them more efficiently and tailor my communication                       |  
+| `* *`    | salesperson whose clients are of different statuses   | categorize clients into different groups (e.g., VIP, Potential, Regular) | manage them more efficiently and tailor my communication                       |
 | `* *`    | salesperson whose customers come from many industries | add tags for clients                                                     | split them into categories                                                     |
 | `* *`    | salesperson                                           | filter clients by tags                                                   | quickly see all the clients inside one category                                |
 | `* *`    | user                                                  | be able to use the software in dark mode                                 | view the contents comfortably                                                  |
@@ -354,7 +356,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a: If the command input is not recognized (e.g., due to a typo), AB3 displays: “I do not understand your command, please try again.”
+* 2a: If the command input is not recognized (e.g., due to a typo), ClientConnect displays: “I do not understand your command, please try again.”
 * 3a: If no entities are found (i.e., the address book is empty), ClientConnect displays the message: “Your list is empty.”
 
 **Use case: Delete a client**
@@ -379,6 +381,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 5a: If the provided <index> is not within the range of the list size, ClientConnect displays: “Please provide a valid index for the entry.”
 * 5a: If the address book is empty when the command is executed, ClientConnect displays an error message: “Your list is empty.”
 
+**Use case: find a client**
+
+**MSS**
+
+1.  User enters the command to find a list of clients that contains the keyword.
+2.  ClientConnect validates the command.
+3.  ClientConnect retrieves the information of clients that contains that specified keyword in their descriptions.
+4.  ClientConnect displays the list of clients.
+
+
+    Use case ends.
+
+**Extensions**
+
+* 2a: If the command input is not recognised, ClientConnect displays: “I do not understand your command, please try again.”
+* 3a: If there is no client found with <keyword>, ClientConnect displays: "No client found with <keyword>."
 
 ### Non-Functional Requirements
 
@@ -401,6 +419,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Salesperson**: Anyone who is selling things and has the need to note down clients' information.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Product Preference**: A specific product or category of products that a client is interested in.
 
 --------------------------------------------------------------------------------------------------------------------
 

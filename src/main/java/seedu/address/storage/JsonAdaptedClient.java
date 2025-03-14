@@ -13,8 +13,10 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
+import seedu.address.model.client.Frequency;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.ProductPreference;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -29,14 +31,18 @@ class JsonAdaptedClient {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final String productPreference;
+    private final int frequency;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedClient} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                             @JsonProperty("productPreference") String productPreference,
+                             @JsonProperty("frequency") int frequency) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -44,10 +50,12 @@ class JsonAdaptedClient {
         if (tags != null) {
             this.tags.addAll(tags);
         }
+        this.productPreference = productPreference;
+        this.frequency = frequency;
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Client} into this class for Jackson use.
      */
     public JsonAdaptedClient(Client source) {
         name = source.getName().fullName;
@@ -57,6 +65,8 @@ class JsonAdaptedClient {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        productPreference = source.getProductPreference().toString();
+        frequency = source.getFrequency().frequency;
     }
 
     /**
@@ -103,7 +113,17 @@ class JsonAdaptedClient {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        if (productPreference == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ProductPreference.class.getSimpleName()));
+        }
+        final ProductPreference modelProductPreference = new ProductPreference(productPreference);
+
+        final Frequency modelFrequency = new Frequency(frequency);
+
+        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags,
+                modelFrequency, modelProductPreference);
     }
 
 }
