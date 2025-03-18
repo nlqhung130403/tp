@@ -119,7 +119,7 @@ public class FindCommandTest {
     /**
      * Parses {@code userInput} into a {@code ClientSatisfyAllPredicate}.
      */
-    private ClientSatisfyAllPredicate preparePredicate(String userInput) {
+    public static ClientSatisfyAllPredicate preparePredicate(String userInput) {
         return new ClientSatisfyAllPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

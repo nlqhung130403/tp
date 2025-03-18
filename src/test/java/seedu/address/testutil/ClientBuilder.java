@@ -107,6 +107,14 @@ public class ClientBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Frequency} of the {@code Client} that we are building.
+     */
+    public ClientBuilder withFrequency(int frequency) {
+        this.frequency = new Frequency(frequency);
+        return this;
+    }
+
     public Client build() {
         return new Client(name, phone, email, address, tags, frequency, productPreference);
     }

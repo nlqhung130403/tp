@@ -13,6 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
@@ -29,6 +30,7 @@ public class TypicalPersons {
             .withPhone("94351253")
             .withTags("friends")
             .withProductPreference("shampoo")
+            .withFrequency(10)
             .build();
     public static final Client BENSON = new ClientBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
@@ -36,12 +38,14 @@ public class TypicalPersons {
             .withPhone("98765432")
             .withTags("owesMoney", "friends")
             .withProductPreference("cherry shampoo")
+            .withFrequency(9)
             .build();
     public static final Client CARL = new ClientBuilder().withName("Carl Kurz")
             .withPhone("95352563")
             .withEmail("heinz@example.com")
             .withAddress("wall street")
             .withProductPreference("coffee book")
+            .withFrequency(4)
             .build();
     public static final Client DANIEL = new ClientBuilder().withName("Daniel Meier")
             .withPhone("87652533")
@@ -49,24 +53,28 @@ public class TypicalPersons {
             .withAddress("10th street")
             .withTags("friends")
             .withProductPreference("recipe book")
+            .withFrequency(2)
             .build();
     public static final Client ELLE = new ClientBuilder().withName("Elle Meyer")
             .withPhone("19482224")
             .withEmail("werner@example.com")
             .withAddress("michegan ave")
             .withProductPreference("tea cup")
+            .withFrequency(5)
             .build();
     public static final Client FIONA = new ClientBuilder().withName("Fiona Kunz")
             .withPhone("19482427")
             .withEmail("lydia@example.com")
             .withAddress("little tokyo")
             .withProductPreference("coffee cup")
+            .withFrequency(6)
             .build();
     public static final Client GEORGE = new ClientBuilder().withName("George Best")
             .withPhone("19482442")
             .withEmail("anna@example.com")
             .withAddress("4th street")
             .withProductPreference("tea bag")
+            .withFrequency(3)
             .build();
 
     // Manually added
@@ -75,12 +83,14 @@ public class TypicalPersons {
             .withEmail("stefan@example.com")
             .withAddress("little india")
             .withProductPreference("shampoo")
+            .withFrequency(5)
             .build();
     public static final Client IDA = new ClientBuilder().withName("Ida Mueller")
             .withPhone("84872131")
             .withEmail("hans@example.com")
             .withAddress("chicago ave")
             .withProductPreference("coffee")
+            .withFrequency(2)
             .build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
@@ -95,17 +105,28 @@ public class TypicalPersons {
     private TypicalPersons() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code AddressBook} with all the typical clients.
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
-        for (Client client : getTypicalPersons()) {
+        for (Client client : getTypicalClients()) {
             ab.addPerson(client);
         }
         return ab;
     }
 
-    public static List<Client> getTypicalPersons() {
+    public static List<Client> getTypicalClients() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    /**
+     * Returns a {@code List} with all the typical clients sorted by frequency.
+     */
+    public static List<Client> getSortedTypicalClients() {
+        List<Client> typicalClients = getTypicalClients();
+        typicalClients.sort((c1, c2) ->
+                Integer.compare(c2.getFrequency().frequency, c1.getFrequency().frequency)
+        );
+        return typicalClients;
     }
 }
