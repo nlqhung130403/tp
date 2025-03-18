@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.RankCommand;
+import seedu.address.model.sortcomparators.TotalPurchaseComparator;
 
 
 public class RankCommandParserTest {
@@ -27,7 +28,8 @@ public class RankCommandParserTest {
         assertParseFailure(parser, "daA1231asjkdhajkdADJKSdajd", MESSAGE_UNKNOWN_COMPARATOR_KEYWORD);
 
         // multiple args
-        assertParseFailure(parser, "frequency priority", MESSAGE_UNKNOWN_COMPARATOR_KEYWORD);
+        assertParseFailure(parser, TotalPurchaseComparator.COMPARATOR_WORD + " priority",
+                MESSAGE_UNKNOWN_COMPARATOR_KEYWORD);
     }
 
     @Test
@@ -35,12 +37,12 @@ public class RankCommandParserTest {
         // no leading and trailing whitespaces
         RankCommand expectedRankCommand =
                 new RankCommand(prepareComparator());
-        assertParseSuccess(parser, "frequency", expectedRankCommand);
+        assertParseSuccess(parser, TotalPurchaseComparator.COMPARATOR_WORD, expectedRankCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n frequency \n \t \t", expectedRankCommand);
+        assertParseSuccess(parser, " \n " + TotalPurchaseComparator.COMPARATOR_WORD + " \n \t \t", expectedRankCommand);
 
         // mixed case keywords
-        assertParseSuccess(parser, "fReqUEncY", expectedRankCommand);
+        assertParseSuccess(parser, "tOtAL", expectedRankCommand);
     }
 }

@@ -14,8 +14,8 @@ public class FrequencyComparatorTest {
 
     @Test
     public void equals() {
-        FrequencyComparator firstFrequencyComp = new FrequencyComparator();
-        FrequencyComparator secondFrequencyComp = new FrequencyComparator();
+        TotalPurchaseComparator firstFrequencyComp = new TotalPurchaseComparator();
+        TotalPurchaseComparator secondFrequencyComp = new TotalPurchaseComparator();
 
         // same object -> returns true
         assertTrue(firstFrequencyComp.equals(firstFrequencyComp));
@@ -32,7 +32,7 @@ public class FrequencyComparatorTest {
 
     @Test
     public void compare_clientFrequency_returnsTrue() {
-        FrequencyComparator frequencyComp = new FrequencyComparator();
+        TotalPurchaseComparator frequencyComp = new TotalPurchaseComparator();
 
         // first client has greater frequency and should come first
         assertEquals(-1, frequencyComp.compare(ALICE, HOON));

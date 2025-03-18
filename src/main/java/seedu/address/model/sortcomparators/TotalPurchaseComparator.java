@@ -5,11 +5,19 @@ import java.util.Comparator;
 import seedu.address.model.client.Client;
 
 /**
- * The comparator that sorts by the frequency of clients' product preferences.
+ * The comparator that sorts by the total purchase of clients' product preferences.
  */
-public class FrequencyComparator implements Comparator<Client> {
-    public static final String COMPARATOR_WORD = "frequency";
+public class TotalPurchaseComparator implements Comparator<Client> {
+    public static final String COMPARATOR_WORD = "total";
 
+    /**
+     * Compares two clients based on their totalPurchase.
+     * This comparison is done in descending order.
+     *
+     * @param clientA the first client to be compared.
+     * @param clientB the second client to be compared.
+     * @return -1 if clientA should go first, 0 if it cannot be determined, and 1 if clientB should go first.
+     */
     @Override
     public int compare(Client clientA, Client clientB) {
         int clientAFrequency = clientA.getFrequency().frequency;
@@ -25,7 +33,7 @@ public class FrequencyComparator implements Comparator<Client> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof FrequencyComparator)) {
+        if (!(other instanceof TotalPurchaseComparator)) {
             return false;
         }
 

@@ -26,7 +26,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.predicates.ClientSatisfyAllPredicate;
-import seedu.address.model.sortcomparators.FrequencyComparator;
+import seedu.address.model.sortcomparators.TotalPurchaseComparator;
 
 
 public class RankCommandTest {
@@ -127,6 +127,6 @@ public class RankCommandTest {
      * Returns a {@code FrequencyComparator} for testing.
      */
     public static Comparator<Client> prepareComparator() {
-        return new FrequencyComparator();
+        return new TotalPurchaseComparator();
     }
 }
