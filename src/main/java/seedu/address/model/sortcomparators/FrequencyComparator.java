@@ -18,4 +18,18 @@ public class FrequencyComparator implements Comparator<Client> {
         return Integer.compare(clientBFrequency, clientAFrequency);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof FrequencyComparator)) {
+            return false;
+        }
+
+        return true;
+    }
+
 }

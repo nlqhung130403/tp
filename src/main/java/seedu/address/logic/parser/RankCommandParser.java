@@ -33,7 +33,16 @@ public class RankCommandParser implements Parser<Command> {
         return new RankCommand(comparator);
     }
 
+    /**
+     * Parses the keywords that follow after the rank command word.
+     * This method is case-insensitive but other than that must match the comparator keyword exactly.
+     *
+     * @param keyword The keyword to check for suitable comparator.
+     * @return the suitable comparator to compare each client entry in the list if a matching keyword is found.
+     * @throws ParseException if no matching keyword is found.
+     */
     private Comparator<Client> parseRankKeywords(String keyword) throws ParseException {
+        keyword = keyword.toLowerCase();
         switch (keyword) {
         case FrequencyComparator.COMPARATOR_WORD:
             return new FrequencyComparator();
