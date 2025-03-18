@@ -12,11 +12,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.client.Address;
-import seedu.address.model.client.Client;
-import seedu.address.model.client.Email;
-import seedu.address.model.client.Name;
-import seedu.address.model.client.Phone;
+import seedu.address.model.client.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -45,7 +41,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Client client = new Client(name, phone, email, address, tagList);
+        //TODO: Implement ProductPreference here
+        ProductPreference productPreference = new ProductPreference("dummy", new Frequency(0));
+
+        Client client = new Client(name, phone, email, address, tagList, productPreference);
 
         return new AddCommand(client);
     }

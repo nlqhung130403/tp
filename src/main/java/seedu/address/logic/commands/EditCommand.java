@@ -21,11 +21,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.client.Address;
-import seedu.address.model.client.Client;
-import seedu.address.model.client.Email;
-import seedu.address.model.client.Name;
-import seedu.address.model.client.Phone;
+import seedu.address.model.client.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -100,8 +96,10 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(clientToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(clientToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(clientToEdit.getTags());
+        //TODO: Implement ProductPreference here
+        ProductPreference productPreference = clientToEdit.getProductPreference();
 
-        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, productPreference);
     }
 
     @Override

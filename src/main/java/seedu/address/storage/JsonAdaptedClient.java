@@ -70,9 +70,9 @@ class JsonAdaptedClient {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted client object into the model's {@code Client} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted client.
      */
     public Client toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
@@ -114,16 +114,21 @@ class JsonAdaptedClient {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
+        if (!Frequency.isValidFrequency(frequency)) {
+            throw new IllegalValueException(Frequency.MESSAGE_CONSTRAINTS);
+        }
+        final Frequency productFrequency = new Frequency(frequency);
+
         if (productPreference == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ProductPreference.class.getSimpleName()));
         }
-        final ProductPreference modelProductPreference = new ProductPreference(productPreference);
+        final ProductPreference modelProductPreference = new ProductPreference(productPreference, productFrequency);
 
-        final Frequency modelFrequency = new Frequency(frequency);
+
 
         return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags,
-                modelFrequency, modelProductPreference);
+                modelProductPreference);
     }
 
 }

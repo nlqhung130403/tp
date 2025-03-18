@@ -14,7 +14,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Client objects.
  */
 public class ClientBuilder {
 
@@ -34,7 +34,7 @@ public class ClientBuilder {
     private Frequency frequency;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code ClientBuilder} with the default details.
      */
     public ClientBuilder() {
         name = new Name(DEFAULT_NAME);
@@ -42,8 +42,9 @@ public class ClientBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
-        productPreference = new ProductPreference(DEFAULT_PRODUCT_PREFERENCE);
         frequency = new Frequency(DEFAULT_FREQUENCY);
+        productPreference = new ProductPreference(DEFAULT_PRODUCT_PREFERENCE, frequency);
+
     }
 
     /**
@@ -103,12 +104,12 @@ public class ClientBuilder {
      * Sets the {@code Product Preference} of the {@code Client} that we are building.
      */
     public ClientBuilder withProductPreference(String productPreference) {
-        this.productPreference = new ProductPreference(productPreference);
+        this.productPreference = new ProductPreference(productPreference, frequency);
         return this;
     }
 
     public Client build() {
-        return new Client(name, phone, email, address, tags, frequency, productPreference);
+        return new Client(name, phone, email, address, tags, productPreference);
     }
 
 }
