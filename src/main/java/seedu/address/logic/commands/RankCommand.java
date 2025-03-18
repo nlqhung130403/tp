@@ -2,12 +2,12 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import javafx.collections.ObservableList;
+import java.util.Comparator;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.client.Client;
-import seedu.address.model.client.predicates.ClientSatisfyAllPredicate;
 
 /**
  * Ranks the current updated list of clients based on a key factor.
@@ -21,19 +21,18 @@ public class RankCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " frequency";
 
-    private final ClientSatisfyAllPredicate factor;
+    private final Comparator<Client> comparator;
 
-    public RankCommand(ClientSatisfyAllPredicate factor) {
-        this.factor = factor;
+    public RankCommand(Comparator<Client> comparator) {
+        this.comparator = comparator;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        ObservableList<Client> currentClientList = model.getFilteredPersonList();
-        currentClientList.sorted();
+        model.sortFilteredPersonList(comparator);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getSortedFilteredPersonList().size()));
     }
 
     @Override
@@ -48,13 +47,13 @@ public class RankCommand extends Command {
         }
 
         RankCommand otherRankCommand = (RankCommand) other;
-        return predicate.equals(otherRankCommand.predicate);
+        return comparator.equals(otherRankCommand.comparator);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("predicate", predicate)
+                .add("comparator", comparator)
                 .toString();
     }
 }

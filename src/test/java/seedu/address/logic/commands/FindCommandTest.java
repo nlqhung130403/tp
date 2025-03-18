@@ -65,7 +65,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getSortedFilteredPersonList());
     }
 
     @Test
@@ -75,7 +75,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getSortedFilteredPersonList());
     }
 
     @Test
@@ -85,27 +85,27 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getSortedFilteredPersonList());
 
         predicate = preparePredicate("coffee book");
         command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, DANIEL, FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CARL, DANIEL, FIONA), model.getSortedFilteredPersonList());
 
         expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 5);
         predicate = preparePredicate("cup friends");
         command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL, ELLE, FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL, ELLE, FIONA), model.getSortedFilteredPersonList());
 
         expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 4);
         predicate = preparePredicate("fiona shampoo bag");
         command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON, FIONA, GEORGE), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(ALICE, BENSON, FIONA, GEORGE), model.getSortedFilteredPersonList());
     }
 
     @Test
