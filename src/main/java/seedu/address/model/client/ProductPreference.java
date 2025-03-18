@@ -1,8 +1,9 @@
 package seedu.address.model.client;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Objects;
 
-import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Client's product preference in the address book.
@@ -11,6 +12,12 @@ public class ProductPreference {
     public final String productPreference;
     public final Frequency frequency;
 
+    /**
+     * Constructs a {@code ProductPreference}.
+     *
+     * @param productPreference A valid product preference.
+     * @param frequency A valid frequency.
+     */
     public ProductPreference(String productPreference, Frequency frequency) {
         requireNonNull(productPreference);
         requireNonNull(frequency);
