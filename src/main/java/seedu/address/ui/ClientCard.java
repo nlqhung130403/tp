@@ -58,6 +58,6 @@ public class ClientCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         productPreferenceWithFrequency.getChildren()
-                .add(new Label(client.getProductPreference().toString() + ": " + client.getTotalPurchase()));
+                .add(new Label(client.getProductPreference().toString() + ": " + client.getTotalPurchase())); //TODO: Change this later
     }
 }

@@ -34,5 +34,12 @@ public class ProductPreferenceTest {
         assertFalse(pp1.equals(pp3));
     }
 
+    @Test
+    public void hashCode_sameValues_sameHashCode() {
+        ProductPreference pp1 = new ProductPreference("ProductA", new Frequency(1));
+        ProductPreference pp2 = new ProductPreference("ProductA", new Frequency(1));
+        assertTrue(pp1.hashCode() == pp2.hashCode());
+    }
+
 
 }

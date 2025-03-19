@@ -114,7 +114,7 @@ class JsonAdaptedClient {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        //To Change later on
+        //TODO: Change later on
         if (!Frequency.isValidFrequency(totalPurchase)) {
             throw new IllegalValueException(Frequency.MESSAGE_CONSTRAINTS);
         }
