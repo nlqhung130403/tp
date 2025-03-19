@@ -24,29 +24,22 @@ public class Client {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private Frequency frequency;
-    private ProductPreference productPreference;
+    private final int totalPurchase;
+    private final ProductPreference productPreference;
 
     /**
      * Every field must be present and not null.
      */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  ProductPreference productPreference) {
+        requireAllNonNull(name, phone, email, address, tags, productPreference);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-    }
-
-    /**
-     * Accepts a client with frequency and product preference
-     */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                  Frequency frequency, ProductPreference productPreference) {
-        this(name, phone, email, address, tags);
-        this.frequency = frequency;
         this.productPreference = productPreference;
+        this.totalPurchase = productPreference.getFrequency().frequency;
     }
 
 
@@ -66,8 +59,8 @@ public class Client {
         return address;
     }
 
-    public Frequency getFrequency() {
-        return frequency;
+    public int getTotalPurchase() {
+        return totalPurchase;
     }
 
     public ProductPreference getProductPreference() {

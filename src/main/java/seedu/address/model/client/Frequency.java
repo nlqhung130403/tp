@@ -1,5 +1,8 @@
 package seedu.address.model.client;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 /**
  * Represents a Client's frequency of product purchasing.
  */
@@ -8,7 +11,14 @@ public class Frequency {
 
     public final int frequency;
 
+    /**
+     * Constructs a {@code Frequency}.
+     *
+     * @param frequency A valid frequency.
+     */
     public Frequency(int frequency) {
+        requireNonNull(frequency);
+        checkArgument(isValidFrequency(frequency), MESSAGE_CONSTRAINTS);
         this.frequency = frequency;
     }
 
