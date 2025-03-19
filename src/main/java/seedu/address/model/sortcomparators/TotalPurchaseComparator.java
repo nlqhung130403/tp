@@ -16,7 +16,8 @@ public class TotalPurchaseComparator implements Comparator<Client> {
      *
      * @param clientA the first client to be compared.
      * @param clientB the second client to be compared.
-     * @return -1 if clientA should go first, 0 if it cannot be determined, and 1 if clientB should go first.
+     * @return -1 if clientA has greater total purchase, 0 if both are the same,
+     *         and 1 if clientB has greater total purchase.
      */
     @Override
     public int compare(Client clientA, Client clientB) {

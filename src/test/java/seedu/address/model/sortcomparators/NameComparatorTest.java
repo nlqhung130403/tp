@@ -10,7 +10,7 @@ import static seedu.address.testutil.TypicalClients.HOON;
 import org.junit.jupiter.api.Test;
 
 public class NameComparatorTest {
-    
+
     @Test
     public void equals() {
         NameComparator firstComp = new NameComparator();

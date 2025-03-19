@@ -35,12 +35,13 @@ public class TotalPurchaseComparatorTest {
         TotalPurchaseComparator comparator = new TotalPurchaseComparator();
 
         // first client has greater frequency and should come first
-        assertEquals(-1, comparator.compare(ALICE, HOON));
+        assertTrue(comparator.compare(ALICE, HOON) < 0);
 
         // second client has greater frequency and should come first
-        assertEquals(1, comparator.compare(FIONA, ALICE));
+        assertTrue(comparator.compare(FIONA, ALICE) > 0);
 
         // both client has the same frequency
         assertEquals(0, comparator.compare(ELLE, HOON));
     }
+
 }
