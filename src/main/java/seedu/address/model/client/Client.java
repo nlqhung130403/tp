@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -25,21 +26,22 @@ public class Client {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final int totalPurchase;
-    private final ProductPreference productPreference;
+    private final Optional<ProductPreference> productPreference;
 
     /**
      * Every field must be present and not null.
      */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                  ProductPreference productPreference) {
-        requireAllNonNull(name, phone, email, address, tags, productPreference);
+    public Client(Name name, Phone phone, Email email, Address address,
+                  Set<Tag> tags, Optional<ProductPreference> productPreference) {
+        requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
         this.productPreference = productPreference;
-        this.totalPurchase = productPreference.getFrequency().frequency;
+        this.totalPurchase = productPreference
+                .map(x -> x.getFrequency().frequency).orElse(0);
     }
 
 
@@ -63,7 +65,7 @@ public class Client {
         return totalPurchase;
     }
 
-    public ProductPreference getProductPreference() {
+    public Optional<ProductPreference> getProductPreference() {
         return productPreference;
     }
 
