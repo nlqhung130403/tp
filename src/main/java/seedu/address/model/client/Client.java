@@ -24,7 +24,7 @@ public class Client {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private final Frequency totalPurchase;
+    private final int totalPurchase;
     private final ProductPreference productPreference;
 
     /**
@@ -39,7 +39,7 @@ public class Client {
         this.address = address;
         this.tags.addAll(tags);
         this.productPreference = productPreference;
-        this.totalPurchase = productPreference.getFrequency();
+        this.totalPurchase = productPreference.getFrequency().frequency;
     }
 
 
@@ -59,7 +59,7 @@ public class Client {
         return address;
     }
 
-    public Frequency getFrequency() {
+    public int getTotalPurchase() {
         return totalPurchase;
     }
 

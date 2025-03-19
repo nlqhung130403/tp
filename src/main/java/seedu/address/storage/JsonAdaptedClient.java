@@ -32,7 +32,7 @@ class JsonAdaptedClient {
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String productPreference;
-    private final int frequency;
+    private final int totalPurchase;
 
     /**
      * Constructs a {@code JsonAdaptedClient} with the given person details.
@@ -42,7 +42,7 @@ class JsonAdaptedClient {
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
                              @JsonProperty("productPreference") String productPreference,
-                             @JsonProperty("frequency") int frequency) {
+                             @JsonProperty("totalPurchase") int totalPurchase) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -51,7 +51,7 @@ class JsonAdaptedClient {
             this.tags.addAll(tags);
         }
         this.productPreference = productPreference;
-        this.frequency = frequency;
+        this.totalPurchase = totalPurchase;
     }
 
     /**
@@ -66,7 +66,7 @@ class JsonAdaptedClient {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         productPreference = source.getProductPreference().toString();
-        frequency = source.getFrequency().frequency;
+        totalPurchase = source.getTotalPurchase();
     }
 
     /**
@@ -114,10 +114,11 @@ class JsonAdaptedClient {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        if (!Frequency.isValidFrequency(frequency)) {
+        //To Change later on
+        if (!Frequency.isValidFrequency(totalPurchase)) {
             throw new IllegalValueException(Frequency.MESSAGE_CONSTRAINTS);
         }
-        final Frequency productFrequency = new Frequency(frequency);
+        final Frequency productFrequency = new Frequency(totalPurchase);
 
         if (productPreference == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

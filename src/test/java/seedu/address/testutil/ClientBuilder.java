@@ -23,7 +23,7 @@ public class ClientBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_PRODUCT_PREFERENCE = "Shampoo";
-    public static final int DEFAULT_FREQUENCY = 0;
+    public static final int DEFAULT_TOTAL_PURCHASE = 0;
 
     private Name name;
     private Phone phone;
@@ -31,7 +31,7 @@ public class ClientBuilder {
     private Address address;
     private Set<Tag> tags;
     private ProductPreference productPreference;
-    private Frequency frequency;
+    private int totalPurchase;
 
     /**
      * Creates a {@code ClientBuilder} with the default details.
@@ -42,8 +42,10 @@ public class ClientBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
-        frequency = new Frequency(DEFAULT_FREQUENCY);
-        productPreference = new ProductPreference(DEFAULT_PRODUCT_PREFERENCE, frequency);
+        totalPurchase = DEFAULT_TOTAL_PURCHASE;
+
+        //TODO: Change Frequency later on
+        productPreference = new ProductPreference(DEFAULT_PRODUCT_PREFERENCE, new Frequency(DEFAULT_TOTAL_PURCHASE));
 
     }
 
@@ -57,7 +59,7 @@ public class ClientBuilder {
         address = clientToCopy.getAddress();
         tags = new HashSet<>(clientToCopy.getTags());
         productPreference = clientToCopy.getProductPreference();
-        frequency = clientToCopy.getFrequency();
+        totalPurchase = clientToCopy.getTotalPurchase();
     }
 
     /**
@@ -104,7 +106,8 @@ public class ClientBuilder {
      * Sets the {@code Product Preference} of the {@code Client} that we are building.
      */
     public ClientBuilder withProductPreference(String productPreference) {
-        this.productPreference = new ProductPreference(productPreference, frequency);
+        //TODO: Change totalPurchase later on
+        this.productPreference = new ProductPreference(productPreference, new Frequency(totalPurchase));
         return this;
     }
 
