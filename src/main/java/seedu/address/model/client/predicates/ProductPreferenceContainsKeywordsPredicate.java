@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.ProductPreference;
 
 /**
  * Tests that a {@code Client}'s {@code Product Preference} matches any of the keywords given.
@@ -21,7 +22,7 @@ public class ProductPreferenceContainsKeywordsPredicate implements Predicate<Cli
     public boolean test(Client client) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
-                        client.getProductPreference().toString(),
+                        client.getProductPreference().map(ProductPreference::toString).orElse(""),
                         keyword));
     }
 
