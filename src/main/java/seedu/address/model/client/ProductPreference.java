@@ -1,15 +1,35 @@
 package seedu.address.model.client;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.Objects;
+
+
 /**
  * Represents a Client's product preference in the address book.
  */
 public class ProductPreference {
     public final String productPreference;
+    public final Frequency frequency;
 
-    public ProductPreference(String productPreference) {
+    /**
+     * Constructs a {@code ProductPreference}.
+     *
+     * @param productPreference A valid product preference.
+     * @param frequency A valid frequency.
+     */
+    public ProductPreference(String productPreference, Frequency frequency) {
+        requireNonNull(productPreference);
+        requireNonNull(frequency);
         this.productPreference = productPreference;
+        this.frequency = frequency;
     }
 
+    public Frequency getFrequency() {
+        return frequency;
+    }
+
+    //TODO: Change this method later on
     @Override
     public String toString() {
         return productPreference;
@@ -26,12 +46,13 @@ public class ProductPreference {
         }
 
         ProductPreference otherProductPreference = (ProductPreference) other;
-        return productPreference.trim().equalsIgnoreCase(otherProductPreference.productPreference.trim());
+        return productPreference.trim().equalsIgnoreCase(otherProductPreference.productPreference.trim())
+                && frequency.equals(otherProductPreference.frequency);
     }
 
     @Override
     public int hashCode() {
-        return productPreference.hashCode();
+        return Objects.hash(productPreference, frequency);
     }
 
 }
