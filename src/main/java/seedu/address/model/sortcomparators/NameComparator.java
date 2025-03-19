@@ -9,6 +9,8 @@ import seedu.address.model.client.Client;
  */
 public class NameComparator implements Comparator<Client> {
 
+    public static final String COMPARATOR_WORD = "name";
+
     /**
      * Compares two clients based on their name in lexicographical order.
      *

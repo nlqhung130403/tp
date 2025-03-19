@@ -62,7 +62,7 @@ public class RankCommandTest {
     @Test
     public void execute_nonFiltered_success() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 7);
-        Comparator<Client> comparator = prepareComparator();
+        Comparator<Client> comparator = new TotalPurchaseComparator();
         RankCommand command = new RankCommand(comparator);
         expectedModel.sortFilteredClientList(comparator);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -72,7 +72,7 @@ public class RankCommandTest {
     @Test
     public void execute_filtered_success() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
-        Comparator<Client> comparator = prepareComparator();
+        Comparator<Client> comparator = new TotalPurchaseComparator();;
         RankCommand command = new RankCommand(comparator);
 
         ClientSatisfyAllPredicate predicate = preparePredicate("coffee");
@@ -117,16 +117,10 @@ public class RankCommandTest {
 
     @Test
     public void toStringMethod() {
-        Comparator<Client> comparator = prepareComparator();
+        Comparator<Client> comparator = new TotalPurchaseComparator();;
         RankCommand rankCommand = new RankCommand(comparator);
         String expected = RankCommand.class.getCanonicalName() + "{comparator=" + comparator + "}";
         assertEquals(expected, rankCommand.toString());
     }
 
-    /**
-     * Returns a {@code FrequencyComparator} for testing.
-     */
-    public static Comparator<Client> prepareComparator() {
-        return new TotalPurchaseComparator();
-    }
 }

@@ -9,6 +9,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.RankCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Client;
+import seedu.address.model.sortcomparators.NameComparator;
 import seedu.address.model.sortcomparators.TotalPurchaseComparator;
 
 /**
@@ -46,6 +47,9 @@ public class RankCommandParser implements Parser<Command> {
         switch (keyword) {
         case TotalPurchaseComparator.COMPARATOR_WORD:
             return new TotalPurchaseComparator();
+
+        case NameComparator.COMPARATOR_WORD:
+            return new NameComparator();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMPARATOR_KEYWORD);

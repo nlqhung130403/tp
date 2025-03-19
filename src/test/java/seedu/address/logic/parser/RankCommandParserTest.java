@@ -2,13 +2,13 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMPARATOR_KEYWORD;
-import static seedu.address.logic.commands.RankCommandTest.prepareComparator;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.RankCommand;
+import seedu.address.model.sortcomparators.NameComparator;
 import seedu.address.model.sortcomparators.TotalPurchaseComparator;
 
 
@@ -34,9 +34,9 @@ public class RankCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsFindCommand() {
-        // no leading and trailing whitespaces
         RankCommand expectedRankCommand =
-                new RankCommand(prepareComparator());
+                new RankCommand(new TotalPurchaseComparator());
+        // no leading and trailing whitespaces
         assertParseSuccess(parser, TotalPurchaseComparator.COMPARATOR_WORD, expectedRankCommand);
 
         // multiple whitespaces between keywords
@@ -44,5 +44,16 @@ public class RankCommandParserTest {
 
         // mixed case keywords
         assertParseSuccess(parser, "tOtAL", expectedRankCommand);
+
+        expectedRankCommand = new RankCommand(new NameComparator());
+        // no leading and trailing whitespaces
+        assertParseSuccess(parser, NameComparator.COMPARATOR_WORD, expectedRankCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, " \n " + NameComparator.COMPARATOR_WORD + " \n \t \t", expectedRankCommand);
+
+        // mixed case keywords
+        assertParseSuccess(parser, "nAMe", expectedRankCommand);
     }
+
 }
