@@ -29,6 +29,7 @@ public class ProductPreference {
         return frequency;
     }
 
+    //TODO: Change this method later on
     @Override
     public String toString() {
         return productPreference;
@@ -46,7 +47,7 @@ public class ProductPreference {
 
         ProductPreference otherProductPreference = (ProductPreference) other;
         return productPreference.trim().equalsIgnoreCase(otherProductPreference.productPreference.trim())
-                && frequency == otherProductPreference.frequency;
+                && frequency.equals(otherProductPreference.frequency);
     }
 
     @Override
