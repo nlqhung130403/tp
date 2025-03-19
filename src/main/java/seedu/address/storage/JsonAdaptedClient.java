@@ -32,7 +32,7 @@ class JsonAdaptedClient {
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String productPreference;
-    private final int frequency;
+    private final int totalPurchase;
 
     /**
      * Constructs a {@code JsonAdaptedClient} with the given person details.
@@ -42,7 +42,7 @@ class JsonAdaptedClient {
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
                              @JsonProperty("productPreference") String productPreference,
-                             @JsonProperty("frequency") int frequency) {
+                             @JsonProperty("totalPurchase") int totalPurchase) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -51,7 +51,7 @@ class JsonAdaptedClient {
             this.tags.addAll(tags);
         }
         this.productPreference = productPreference;
-        this.frequency = frequency;
+        this.totalPurchase = totalPurchase;
     }
 
     /**
@@ -66,13 +66,13 @@ class JsonAdaptedClient {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         productPreference = source.getProductPreference().toString();
-        frequency = source.getFrequency().frequency;
+        totalPurchase = source.getTotalPurchase();
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted client object into the model's {@code Client} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted client.
      */
     public Client toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
@@ -114,16 +114,22 @@ class JsonAdaptedClient {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
+        //TODO: Change later on
+        if (!Frequency.isValidFrequency(totalPurchase)) {
+            throw new IllegalValueException(Frequency.MESSAGE_CONSTRAINTS);
+        }
+        final Frequency productFrequency = new Frequency(totalPurchase);
+
         if (productPreference == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ProductPreference.class.getSimpleName()));
         }
-        final ProductPreference modelProductPreference = new ProductPreference(productPreference);
+        final ProductPreference modelProductPreference = new ProductPreference(productPreference, productFrequency);
 
-        final Frequency modelFrequency = new Frequency(frequency);
+
 
         return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags,
-                modelFrequency, modelProductPreference);
+                modelProductPreference);
     }
 
 }
