@@ -9,6 +9,13 @@ import seedu.address.model.client.Client;
  */
 public class NameComparator implements Comparator<Client> {
 
+    /**
+     * Compares two clients based on their name in lexicographical order.
+     *
+     * @param clientA the first client to be compared.
+     * @param clientB the second client to be compared.
+     * @return -1 if clientA should go first, 0 if it cannot be determined, and 1 if clientB should go first.
+     */
     @Override
     public int compare(Client clientA, Client clientB) {
         String clientAName = clientA.getName().fullName;
