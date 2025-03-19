@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import java.net.URL?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
@@ -23,33 +24,35 @@
                     <Insets top="20" right="25" bottom="20" left="25"/>
                 </padding>
 
-                <!-- Name Section -->
                 <Label fx:id="name" styleClass="detail-header">
                     <font>
                         <Font size="20.0" />
                     </font>
                 </Label>
 
-                <!-- Contact Information -->
                 <VBox spacing="5" styleClass="detail-section">
                     <Label text="Contact Information" styleClass="detail-subheader"/>
                     <Label fx:id="phone" styleClass="detail-content"/>
                     <Label fx:id="email" styleClass="detail-content"/>
                 </VBox>
 
-                <!-- Address Section -->
                 <VBox spacing="5" styleClass="detail-section">
                     <Label text="Address" styleClass="detail-subheader"/>
                     <Label fx:id="address" styleClass="detail-content" wrapText="true"/>
                 </VBox>
 
-                <!-- Preferences Section -->
                 <VBox spacing="5" styleClass="detail-section">
                     <Label text="Preferences" styleClass="detail-subheader"/>
-                    <Label fx:id="frequency" styleClass="detail-content"/>
                     <Label fx:id="productPreference" styleClass="detail-content" wrapText="true"/>
+                    <Label fx:id="frequency" styleClass="detail-content"/>
+
                 </VBox>
             </VBox>
         </content>
     </ScrollPane>
+
+    <stylesheets>
+        <URL value="@DarkTheme.css" />
+        <URL value="@Extensions.css" />
+    </stylesheets>
 </AnchorPane>
