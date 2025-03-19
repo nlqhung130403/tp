@@ -32,7 +32,7 @@ public class JsonAdaptedClientTest {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
     private static final String VALID_PRODUCT_PREFERENCE = BENSON.getProductPreference().toString();
-    private static final int VALID_FREQUENCY = BENSON.getFrequency().frequency;
+    private static final int VALID_FREQUENCY = BENSON.getTotalPurchase();
 
     @Test
     public void toModelType_validClientDetails_returnsClient() throws Exception {

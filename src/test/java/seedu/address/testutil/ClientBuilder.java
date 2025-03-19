@@ -43,8 +43,6 @@ public class ClientBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         totalPurchase = DEFAULT_TOTAL_PURCHASE;
-
-        //TODO: Change Frequency later on
         productPreference = new ProductPreference(DEFAULT_PRODUCT_PREFERENCE, new Frequency(DEFAULT_TOTAL_PURCHASE));
 
     }
@@ -104,18 +102,20 @@ public class ClientBuilder {
 
     /**
      * Sets the {@code Product Preference} of the {@code Client} that we are building.
+     * Should be called after withTotalPurchase to set the correct product preference frequency.
      */
     public ClientBuilder withProductPreference(String productPreference) {
-        //TODO: Change totalPurchase later on
         this.productPreference = new ProductPreference(productPreference, new Frequency(totalPurchase));
         return this;
     }
 
     /**
-     * Sets the {@code Frequency} of the {@code Client} that we are building.
+     * Sets the {@code TotalPurchase} of the {@code Client} that we are building.
+     * Should be called before withProductPreference.
+     * Unless a frequency of 0 is desired for product preference.
      */
-    public ClientBuilder withFrequency(int frequency) {
-        this.frequency = new Frequency(frequency);
+    public ClientBuilder withTotalPurchase(int totalPurchase) {
+        this.totalPurchase = totalPurchase;
         return this;
     }
 

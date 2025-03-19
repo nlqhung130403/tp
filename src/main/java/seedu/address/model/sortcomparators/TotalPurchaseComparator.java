@@ -21,10 +21,10 @@ public class TotalPurchaseComparator implements Comparator<Client> {
      */
     @Override
     public int compare(Client clientA, Client clientB) {
-        int clientAFrequency = clientA.getFrequency().frequency;
-        int clientBFrequency = clientB.getFrequency().frequency;
+        int clientATotalPurchase = clientA.getTotalPurchase();
+        int clientBTotalPurchase = clientB.getTotalPurchase();
 
-        return Integer.compare(clientBFrequency, clientAFrequency);
+        return Integer.compare(clientBTotalPurchase, clientATotalPurchase);
     }
 
     @Override

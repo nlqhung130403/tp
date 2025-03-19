@@ -26,6 +26,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.ProductPreference;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -100,8 +101,11 @@ public class EditCommand extends Command {
         Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
         Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
+        ProductPreference updatedProductPreference = editClientDescriptor.getProductPreference()
+                .orElse(clientToEdit.getProductPreference());
 
-        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Client(updatedName, updatedPhone, updatedEmail,
+                updatedAddress, updatedTags, updatedProductPreference);
     }
 
     @Override
@@ -138,6 +142,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private ProductPreference productPreference;
 
         public EditClientDescriptor() {}
 
@@ -151,6 +156,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setProductPreference(toCopy.productPreference);
         }
 
         /**
@@ -198,6 +204,14 @@ public class EditCommand extends Command {
          */
         public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        public void setProductPreference(ProductPreference productPreference) {
+            this.productPreference = productPreference;
+        }
+
+        public Optional<ProductPreference> getProductPreference() {
+            return Optional.ofNullable(productPreference);
         }
 
         /**
