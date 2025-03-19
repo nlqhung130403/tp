@@ -6,15 +6,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.FindCommandTest.preparePredicate;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalPersons.CARL;
-import static seedu.address.testutil.TypicalPersons.DANIEL;
-import static seedu.address.testutil.TypicalPersons.ELLE;
-import static seedu.address.testutil.TypicalPersons.FIONA;
-import static seedu.address.testutil.TypicalPersons.GEORGE;
-import static seedu.address.testutil.TypicalPersons.getSortedTypicalClients;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalClients.ALICE;
+import static seedu.address.testutil.TypicalClients.BENSON;
+import static seedu.address.testutil.TypicalClients.CARL;
+import static seedu.address.testutil.TypicalClients.DANIEL;
+import static seedu.address.testutil.TypicalClients.ELLE;
+import static seedu.address.testutil.TypicalClients.FIONA;
+import static seedu.address.testutil.TypicalClients.GEORGE;
+import static seedu.address.testutil.TypicalClients.getSortedTypicalClients;
+import static seedu.address.testutil.TypicalClients.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -55,7 +55,7 @@ public class RankCommandTest {
         // null -> returns false
         assertFalse(rankFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different client -> returns false
         assertFalse(rankFirstCommand.equals(rankSecondCommand));
     }
 
@@ -64,9 +64,9 @@ public class RankCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 7);
         Comparator<Client> comparator = prepareComparator();
         RankCommand command = new RankCommand(comparator);
-        expectedModel.sortFilteredPersonList(comparator);
+        expectedModel.sortFilteredClientList(comparator);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(getSortedTypicalClients(), model.getSortedFilteredPersonList());
+        assertEquals(getSortedTypicalClients(), model.getSortedFilteredClientList());
     }
 
     @Test
@@ -76,43 +76,43 @@ public class RankCommandTest {
         RankCommand command = new RankCommand(comparator);
 
         ClientSatisfyAllPredicate predicate = preparePredicate("coffee");
-        model.updateFilteredPersonList(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
-        expectedModel.sortFilteredPersonList(comparator);
+        model.updateFilteredClientList(predicate);
+        expectedModel.updateFilteredClientList(predicate);
+        expectedModel.sortFilteredClientList(comparator);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(FIONA, CARL), model.getSortedFilteredPersonList());
+        assertEquals(Arrays.asList(FIONA, CARL), model.getSortedFilteredClientList());
 
         expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         predicate = preparePredicate("Kurz Elle Kunz");
-        model.updateFilteredPersonList(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
-        expectedModel.sortFilteredPersonList(comparator);
+        model.updateFilteredClientList(predicate);
+        expectedModel.updateFilteredClientList(predicate);
+        expectedModel.sortFilteredClientList(comparator);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(FIONA, ELLE, CARL), model.getSortedFilteredPersonList());
+        assertEquals(Arrays.asList(FIONA, ELLE, CARL), model.getSortedFilteredClientList());
 
         expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         predicate = preparePredicate("coffee book");
-        model.updateFilteredPersonList(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
-        expectedModel.sortFilteredPersonList(comparator);
+        model.updateFilteredClientList(predicate);
+        expectedModel.updateFilteredClientList(predicate);
+        expectedModel.sortFilteredClientList(comparator);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(FIONA, CARL, DANIEL), model.getSortedFilteredPersonList());
+        assertEquals(Arrays.asList(FIONA, CARL, DANIEL), model.getSortedFilteredClientList());
 
         expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 5);
         predicate = preparePredicate("cup friends");
-        model.updateFilteredPersonList(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
-        expectedModel.sortFilteredPersonList(comparator);
+        model.updateFilteredClientList(predicate);
+        expectedModel.updateFilteredClientList(predicate);
+        expectedModel.sortFilteredClientList(comparator);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON, FIONA, ELLE, DANIEL), model.getSortedFilteredPersonList());
+        assertEquals(Arrays.asList(ALICE, BENSON, FIONA, ELLE, DANIEL), model.getSortedFilteredClientList());
 
         expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 4);
         predicate = preparePredicate("fiona shampoo bag");
-        model.updateFilteredPersonList(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
-        expectedModel.sortFilteredPersonList(comparator);
+        model.updateFilteredClientList(predicate);
+        expectedModel.updateFilteredClientList(predicate);
+        expectedModel.sortFilteredClientList(comparator);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON, FIONA, GEORGE), model.getSortedFilteredPersonList());
+        assertEquals(Arrays.asList(ALICE, BENSON, FIONA, GEORGE), model.getSortedFilteredClientList());
     }
 
     @Test

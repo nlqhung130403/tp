@@ -19,9 +19,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.client.Client;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Client} objects to be used in tests.
  */
-public class TypicalPersons {
+public class TypicalClients {
 
     public static final Client ALICE = new ClientBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111")
@@ -92,7 +92,7 @@ public class TypicalPersons {
             .withFrequency(2)
             .build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
+    // Manually added - Client's details found in {@code CommandTestUtil}
     public static final Client AMY = new ClientBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
     public static final Client BOB = new ClientBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
@@ -101,7 +101,7 @@ public class TypicalPersons {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPersons() {} // prevents instantiation
+    private TypicalClients() {} // prevents instantiation
 
     /**
      * Returns an {@code AddressBook} with all the typical clients.
@@ -109,7 +109,7 @@ public class TypicalPersons {
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
         for (Client client : getTypicalClients()) {
-            ab.addPerson(client);
+            ab.addClient(client);
         }
         return ab;
     }

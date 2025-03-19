@@ -54,41 +54,41 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a client with the same identity as {@code client} exists in the address book.
      */
-    boolean hasPerson(Client client);
+    boolean hasClient(Client client);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given client.
+     * The client must exist in the address book.
      */
-    void deletePerson(Client target);
+    void deleteClient(Client target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given client.
+     * {@code client} must not already exist in the address book.
      */
-    void addPerson(Client client);
+    void addClient(Client client);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given client {@code target} with {@code editedClient}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The client identity of {@code editedClient} must not be the same as another existing client in the address book.
      */
-    void setPerson(Client target, Client editedClient);
+    void setClient(Client target, Client editedClient);
 
-    /** Returns an unmodifiable view of the sorted filtered person list */
-    ObservableList<Client> getSortedFilteredPersonList();
+    /** Returns an unmodifiable view of the sorted filtered client list */
+    ObservableList<Client> getSortedFilteredClientList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered client list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Client> predicate);
+    void updateFilteredClientList(Predicate<Client> predicate);
 
     /**
-     * Sorts the filtered person list by the given {@code sorter}.
+     * Sorts the filtered client list by the given {@code sorter}.
      * @throws NullPointerException if {@code sorter} is null.
      */
-    void sortFilteredPersonList(Comparator<Client> sorter);
+    void sortFilteredClientList(Comparator<Client> sorter);
 }

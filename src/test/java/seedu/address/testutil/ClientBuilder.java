@@ -14,7 +14,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Client objects.
  */
 public class ClientBuilder {
 
@@ -34,7 +34,7 @@ public class ClientBuilder {
     private Frequency frequency;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code ClientBuilder} with the default details.
      */
     public ClientBuilder() {
         name = new Name(DEFAULT_NAME);
