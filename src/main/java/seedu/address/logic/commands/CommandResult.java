@@ -49,7 +49,7 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with showExpandedView and expandedClient
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
-                         boolean showExpandedView, Client expandedClient){
+                         boolean showExpandedView, Client expandedClient) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
@@ -69,7 +69,7 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isShowExpandedView(){
+    public boolean isShowExpandedView() {
         return showExpandedView;
     }
 

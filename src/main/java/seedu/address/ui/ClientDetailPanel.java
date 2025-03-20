@@ -7,6 +7,9 @@ import javafx.scene.layout.Region;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.ProductPreference;
 
+/**
+ * Ui component that displays the expanded client details
+ */
 public class ClientDetailPanel extends UiPart<Region> {
     private static final String FXML = "ClientDetailPanel.fxml";
 
@@ -17,6 +20,10 @@ public class ClientDetailPanel extends UiPart<Region> {
     @FXML private Label frequency;
     @FXML private Label productPreference;
 
+    /**
+     * Constructor that takes in a client in order to display target's details
+     * @param client
+     */
     public ClientDetailPanel(Client client) {
         super(FXML);
         name.setText(client.getName().fullName);

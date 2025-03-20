@@ -1,12 +1,12 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ExpandCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-
+/**
+ * Parse the input and creates an ExpandCommand
+ */
 public class ExpandCommandParser implements Parser<ExpandCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
