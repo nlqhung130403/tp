@@ -25,7 +25,7 @@ import seedu.address.model.tag.Tag;
  */
 class JsonAdaptedClient {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Client's %s field is missing!";
 
     private final String name;
     private final String phone;
@@ -36,7 +36,7 @@ class JsonAdaptedClient {
     private final int totalPurchase;
 
     /**
-     * Constructs a {@code JsonAdaptedClient} with the given person details.
+     * Constructs a {@code JsonAdaptedClient} with the given client details.
      */
     @JsonCreator
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
@@ -77,9 +77,9 @@ class JsonAdaptedClient {
      * @throws IllegalValueException if there were any data constraints violated in the adapted client.
      */
     public Client toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> clientTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
-            personTags.add(tag.toModelType());
+            clientTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -114,21 +114,20 @@ class JsonAdaptedClient {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Tag> modelTags = new HashSet<>(clientTags);
 
-        //TODO: Change later on
+
+        if (productPreference == null) {
+            return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags,
+                    Optional.ofNullable(null));
+        }
+
         if (!Frequency.isValidFrequency(totalPurchase)) {
             throw new IllegalValueException(Frequency.MESSAGE_CONSTRAINTS);
         }
         final Frequency productFrequency = new Frequency(totalPurchase);
 
-        if (productPreference == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ProductPreference.class.getSimpleName()));
-        }
         final ProductPreference modelProductPreference = new ProductPreference(productPreference, productFrequency);
-
-
 
         return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags,
                 Optional.of(modelProductPreference));

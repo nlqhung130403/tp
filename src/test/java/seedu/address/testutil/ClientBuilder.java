@@ -104,10 +104,20 @@ public class ClientBuilder {
 
     /**
      * Sets the {@code Product Preference} of the {@code Client} that we are building.
+     * Should be called after withTotalPurchase to set the correct product preference frequency.
      */
     public ClientBuilder withProductPreference(String productPreference) {
-        //TODO: Change totalPurchase later on
         this.productPreference = Optional.of(new ProductPreference(productPreference, new Frequency(totalPurchase)));
+        return this;
+    }
+
+    /**
+     * Sets the {@code TotalPurchase} of the {@code Client} that we are building.
+     * Should be called before withProductPreference.
+     * Unless a frequency of 0 is desired for product preference.
+     */
+    public ClientBuilder withTotalPurchase(int totalPurchase) {
+        this.totalPurchase = totalPurchase;
         return this;
     }
 
