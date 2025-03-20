@@ -71,7 +71,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void showListView() {
         viewContainer.getChildren().clear();
-        clientListPanel = new ClientListPanel(logic.getFilteredPersonList());
+        clientListPanel = new ClientListPanel(logic.getSortedFilteredClientList());
         viewContainer.getChildren().add(clientListPanel.getRoot());
     }
 
