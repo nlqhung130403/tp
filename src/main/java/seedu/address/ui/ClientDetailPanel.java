@@ -30,7 +30,7 @@ public class ClientDetailPanel extends UiPart<Region> {
         phone.setText("Phone: " + client.getPhone().value);
         email.setText("Email: " + client.getEmail().value);
         address.setText("Address: " + client.getAddress().value);
-        frequency.setText("Purchase Frequency: " + client.getTotalPurchase());
+        frequency.setText("Purchase Frequency: " + client.getProductPreference().get().getFrequency());
         if (client.getProductPreference().isPresent()) {
             productPreference.setText("Preferred Products: " + client.getProductPreference()
                     .map(ProductPreference::toString).orElse(""));
