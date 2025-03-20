@@ -55,26 +55,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane viewContainer;
 
-    private void handleCommandResult(CommandResult commandResult) {
-        if (commandResult.isShowExpandedView()) {
-            showExpandedView(commandResult.getExpandedClient());
-        } else {
-            showListView();
-        }
-    }
-
-    private void showExpandedView(Client client) {
-        viewContainer.getChildren().clear();
-        clientDetailPanel = new ClientDetailPanel(client);
-        viewContainer.getChildren().add(clientDetailPanel.getRoot());
-    }
-
-    private void showListView() {
-        viewContainer.getChildren().clear();
-        clientListPanel = new ClientListPanel(logic.getSortedFilteredClientList());
-        viewContainer.getChildren().add(clientListPanel.getRoot());
-    }
-
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -185,6 +165,30 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+    }
+
+    /**
+     * Decide if expanded window is needed
+     * @param commandResult
+     */
+    private void handleCommandResult(CommandResult commandResult) {
+        if (commandResult.isShowExpandedView()) {
+            showExpandedView(commandResult.getExpandedClient());
+        } else {
+            showListView();
+        }
+    }
+
+    private void showExpandedView(Client client) {
+        viewContainer.getChildren().clear();
+        clientDetailPanel = new ClientDetailPanel(client);
+        viewContainer.getChildren().add(clientDetailPanel.getRoot());
+    }
+
+    private void showListView() {
+        viewContainer.getChildren().clear();
+        clientListPanel = new ClientListPanel(logic.getSortedFilteredClientList());
+        viewContainer.getChildren().add(clientListPanel.getRoot());
     }
 
     public ClientListPanel getClientListPanel() {
