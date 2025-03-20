@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.client.Address;
@@ -30,7 +31,7 @@ public class ClientBuilder {
     private Email email;
     private Address address;
     private Set<Tag> tags;
-    private ProductPreference productPreference;
+    private Optional<ProductPreference> productPreference;
     private int totalPurchase;
 
     /**
@@ -43,7 +44,8 @@ public class ClientBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         totalPurchase = DEFAULT_TOTAL_PURCHASE;
-        productPreference = new ProductPreference(DEFAULT_PRODUCT_PREFERENCE, new Frequency(DEFAULT_TOTAL_PURCHASE));
+        productPreference = Optional
+                .of(new ProductPreference(DEFAULT_PRODUCT_PREFERENCE, new Frequency(DEFAULT_TOTAL_PURCHASE)));
 
     }
 
@@ -105,7 +107,7 @@ public class ClientBuilder {
      * Should be called after withTotalPurchase to set the correct product preference frequency.
      */
     public ClientBuilder withProductPreference(String productPreference) {
-        this.productPreference = new ProductPreference(productPreference, new Frequency(totalPurchase));
+        this.productPreference = Optional.of(new ProductPreference(productPreference, new Frequency(totalPurchase)));
         return this;
     }
 

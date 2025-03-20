@@ -3,6 +3,7 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -65,7 +66,8 @@ class JsonAdaptedClient {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        productPreference = source.getProductPreference().toString();
+        productPreference = source.getProductPreference()
+                .map(ProductPreference::toString).orElse("");
         totalPurchase = source.getTotalPurchase();
     }
 
@@ -129,7 +131,7 @@ class JsonAdaptedClient {
 
 
         return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags,
-                modelProductPreference);
+                Optional.of(modelProductPreference));
     }
 
 }
