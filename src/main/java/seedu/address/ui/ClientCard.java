@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.ProductPreference;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -57,8 +58,10 @@ public class ClientCard extends UiPart<Region> {
         client.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        //TODO: Change this later
-        productPreferenceWithFrequency.getChildren()
-                .add(new Label(client.getProductPreference().toString() + ": " + client.getTotalPurchase()));
+        if (client.getProductPreference().isPresent()) {
+            productPreferenceWithFrequency.getChildren()
+                    .add(new Label(client.getProductPreference()
+                            .map(ProductPreference::toString).orElse("") + ": " + client.getTotalPurchase()));
+        }
     }
 }

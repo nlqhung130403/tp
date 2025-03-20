@@ -16,6 +16,7 @@ import seedu.address.model.client.Address;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.ProductPreference;
 
 public class JsonAdaptedClientTest {
     private static final String INVALID_NAME = "R@chel";
@@ -31,7 +32,8 @@ public class JsonAdaptedClientTest {
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
-    private static final String VALID_PRODUCT_PREFERENCE = BENSON.getProductPreference().toString();
+    private static final String VALID_PRODUCT_PREFERENCE = BENSON.getProductPreference()
+            .map(ProductPreference::toString).orElse("");
     private static final int VALID_TOTAL_PURCHASE = BENSON.getTotalPurchase();
 
     @Test
