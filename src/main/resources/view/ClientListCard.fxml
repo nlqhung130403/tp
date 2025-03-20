@@ -29,6 +29,7 @@
       </HBox>
       <VBox spacing="3.0">
         <FlowPane fx:id="tags" />
+        <FlowPane fx:id="totalPurchase" />
         <FlowPane fx:id="productPreferenceWithFrequency" />
       </VBox>
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
