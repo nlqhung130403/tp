@@ -19,16 +19,16 @@ import seedu.address.model.client.Client;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Clients list contains duplicate client(s).";
 
-    private final List<JsonAdaptedClient> persons = new ArrayList<>();
+    private final List<JsonAdaptedClient> clients = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given clients.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedClient> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableAddressBook(@JsonProperty("clients") List<JsonAdaptedClient> clients) {
+        this.clients.addAll(clients);
     }
 
     /**
@@ -37,7 +37,7 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedClient::new).collect(Collectors.toList()));
+        clients.addAll(source.getClientList().stream().map(JsonAdaptedClient::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,12 +47,12 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedClient jsonAdaptedClient : persons) {
+        for (JsonAdaptedClient jsonAdaptedClient : clients) {
             Client client = jsonAdaptedClient.toModelType();
-            if (addressBook.hasPerson(client)) {
+            if (addressBook.hasClient(client)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addPerson(client);
+            addressBook.addClient(client);
         }
         return addressBook;
     }

@@ -44,7 +44,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane clientListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -187,7 +187,7 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public ClientListPanel getPersonListPanel() {
+    public ClientListPanel getClientListPanel() {
         return clientListPanel;
     }
 

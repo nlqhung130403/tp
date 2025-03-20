@@ -5,14 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalPersons.CARL;
-import static seedu.address.testutil.TypicalPersons.DANIEL;
-import static seedu.address.testutil.TypicalPersons.ELLE;
-import static seedu.address.testutil.TypicalPersons.FIONA;
-import static seedu.address.testutil.TypicalPersons.GEORGE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalClients.ALICE;
+import static seedu.address.testutil.TypicalClients.BENSON;
+import static seedu.address.testutil.TypicalClients.CARL;
+import static seedu.address.testutil.TypicalClients.DANIEL;
+import static seedu.address.testutil.TypicalClients.ELLE;
+import static seedu.address.testutil.TypicalClients.FIONA;
+import static seedu.address.testutil.TypicalClients.GEORGE;
+import static seedu.address.testutil.TypicalClients.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -54,58 +54,58 @@ public class FindCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different client -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
+    public void execute_zeroKeywords_noClientFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         ClientSatisfyAllPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredClientList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getSortedFilteredClientList());
     }
 
     @Test
-    public void execute_multipleKeywords_noPersonFound() {
+    public void execute_multipleKeywords_noClientFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         ClientSatisfyAllPredicate predicate = preparePredicate("superman action figure boss");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredClientList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getSortedFilteredClientList());
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
+    public void execute_multipleKeywords_multipleClientsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         ClientSatisfyAllPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredClientList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getSortedFilteredClientList());
 
         predicate = preparePredicate("coffee book");
         command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredClientList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, DANIEL, FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CARL, DANIEL, FIONA), model.getSortedFilteredClientList());
 
         expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 5);
         predicate = preparePredicate("cup friends");
         command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredClientList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL, ELLE, FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL, ELLE, FIONA), model.getSortedFilteredClientList());
 
         expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 4);
         predicate = preparePredicate("fiona shampoo bag");
         command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredClientList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON, FIONA, GEORGE), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(ALICE, BENSON, FIONA, GEORGE), model.getSortedFilteredClientList());
     }
 
     @Test
@@ -119,7 +119,7 @@ public class FindCommandTest {
     /**
      * Parses {@code userInput} into a {@code ClientSatisfyAllPredicate}.
      */
-    private ClientSatisfyAllPredicate preparePredicate(String userInput) {
+    public static ClientSatisfyAllPredicate preparePredicate(String userInput) {
         return new ClientSatisfyAllPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

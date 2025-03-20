@@ -5,13 +5,14 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Client in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Client {
@@ -24,29 +25,23 @@ public class Client {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private Frequency frequency;
-    private ProductPreference productPreference;
+    private final int totalPurchase;
+    private final Optional<ProductPreference> productPreference;
 
     /**
      * Every field must be present and not null.
      */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Client(Name name, Phone phone, Email email, Address address,
+                  Set<Tag> tags, Optional<ProductPreference> productPreference) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-    }
-
-    /**
-     * Accepts a client with frequency and product preference
-     */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                  Frequency frequency, ProductPreference productPreference) {
-        this(name, phone, email, address, tags);
-        this.frequency = frequency;
         this.productPreference = productPreference;
+        this.totalPurchase = productPreference
+                .map(x -> x.getFrequency().frequency).orElse(0);
     }
 
 
@@ -66,11 +61,11 @@ public class Client {
         return address;
     }
 
-    public Frequency getFrequency() {
-        return frequency;
+    public int getTotalPurchase() {
+        return totalPurchase;
     }
 
-    public ProductPreference getProductPreference() {
+    public Optional<ProductPreference> getProductPreference() {
         return productPreference;
     }
 
@@ -83,10 +78,10 @@ public class Client {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both clients have the same name.
+     * This defines a weaker notion of equality between two clients.
      */
-    public boolean isSamePerson(Client otherClient) {
+    public boolean isSameClient(Client otherClient) {
         if (otherClient == this) {
             return true;
         }
@@ -98,8 +93,8 @@ public class Client {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both clients have the same identity and data fields.
+     * This defines a stronger notion of equality between two clients.
      */
     @Override
     public boolean equals(Object other) {

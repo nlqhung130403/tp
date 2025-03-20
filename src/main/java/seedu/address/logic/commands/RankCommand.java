@@ -2,34 +2,35 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.client.predicates.ClientSatisfyAllPredicate;
+import seedu.address.model.client.Client;
 
 /**
- * Finds and lists all clients in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Ranks the current updated list of clients based on a key factor.
  */
-public class FindCommand extends Command {
+public class RankCommand extends Command {
 
-    public static final String COMMAND_WORD = "find";
+    public static final String COMMAND_WORD = "rank";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all clients whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Ranks all clients based on "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + COMMAND_WORD + " frequency";
 
-    private final ClientSatisfyAllPredicate predicate;
+    private final Comparator<Client> comparator;
 
-    public FindCommand(ClientSatisfyAllPredicate predicate) {
-        this.predicate = predicate;
+    public RankCommand(Comparator<Client> comparator) {
+        this.comparator = comparator;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredClientList(predicate);
+        model.sortFilteredClientList(comparator);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getSortedFilteredClientList().size()));
     }
@@ -41,18 +42,18 @@ public class FindCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof FindCommand)) {
+        if (!(other instanceof RankCommand)) {
             return false;
         }
 
-        FindCommand otherFindCommand = (FindCommand) other;
-        return predicate.equals(otherFindCommand.predicate);
+        RankCommand otherRankCommand = (RankCommand) other;
+        return comparator.equals(otherRankCommand.comparator);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("predicate", predicate)
+                .add("comparator", comparator)
                 .toString();
     }
 }

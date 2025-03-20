@@ -3,6 +3,7 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -24,7 +25,7 @@ import seedu.address.model.tag.Tag;
  */
 class   JsonAdaptedClient {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Client's %s field is missing!";
 
     private final String name;
     private final String phone;
@@ -32,17 +33,17 @@ class   JsonAdaptedClient {
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String productPreference;
-    private final int frequency;
+    private final int totalPurchase;
 
     /**
-     * Constructs a {@code JsonAdaptedClient} with the given person details.
+     * Constructs a {@code JsonAdaptedClient} with the given client details.
      */
     @JsonCreator
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
                              @JsonProperty("productPreference") String productPreference,
-                             @JsonProperty("frequency") int frequency) {
+                             @JsonProperty("totalPurchase") int totalPurchase) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -51,7 +52,7 @@ class   JsonAdaptedClient {
             this.tags.addAll(tags);
         }
         this.productPreference = productPreference;
-        this.frequency = frequency;
+        this.totalPurchase = totalPurchase;
     }
 
     /**
@@ -65,19 +66,20 @@ class   JsonAdaptedClient {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        productPreference = source.getProductPreference().toString();
-        frequency = source.getFrequency().frequency;
+        productPreference = source.getProductPreference()
+                .map(ProductPreference::toString).orElse("");
+        totalPurchase = source.getTotalPurchase();
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted client object into the model's {@code Client} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted client.
      */
     public Client toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> clientTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
-            personTags.add(tag.toModelType());
+            clientTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -112,18 +114,23 @@ class   JsonAdaptedClient {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Tag> modelTags = new HashSet<>(clientTags);
+
 
         if (productPreference == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ProductPreference.class.getSimpleName()));
+            return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags,
+                    Optional.ofNullable(null));
         }
-        final ProductPreference modelProductPreference = new ProductPreference(productPreference);
 
-        final Frequency modelFrequency = new Frequency(frequency);
+        if (!Frequency.isValidFrequency(totalPurchase)) {
+            throw new IllegalValueException(Frequency.MESSAGE_CONSTRAINTS);
+        }
+        final Frequency productFrequency = new Frequency(totalPurchase);
+
+        final ProductPreference modelProductPreference = new ProductPreference(productPreference, productFrequency);
 
         return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags,
-                modelFrequency, modelProductPreference);
+                Optional.of(modelProductPreference));
     }
 
 }
