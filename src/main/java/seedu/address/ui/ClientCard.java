@@ -11,11 +11,11 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.ProductPreference;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Client}.
  */
 public class ClientCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "ClientListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -61,7 +61,8 @@ public class ClientCard extends UiPart<Region> {
         if (client.getProductPreference().isPresent()) {
             productPreferenceWithFrequency.getChildren()
                     .add(new Label(client.getProductPreference()
-                            .map(ProductPreference::toString).orElse("") + ": " + client.getTotalPurchase()));
+                            .map(ProductPreference::toString).orElse("") + ": "
+                            + client.getProductPreference().get().frequency));
         }
     }
 }
