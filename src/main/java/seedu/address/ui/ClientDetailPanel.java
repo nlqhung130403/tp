@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.ProductPreference;
 
 public class ClientDetailPanel extends UiPart<Region> {
     private static final String FXML = "ClientDetailPanel.fxml";
@@ -23,6 +24,9 @@ public class ClientDetailPanel extends UiPart<Region> {
         email.setText("Email: " + client.getEmail().value);
         address.setText("Address: " + client.getAddress().value);
         frequency.setText("Purchase Frequency: " + client.getTotalPurchase());
-        productPreference.setText("Preferred Products: " + client.getProductPreference());
+        if (client.getProductPreference().isPresent()) {
+            productPreference.setText("Preferred Products: " + client.getProductPreference()
+                    .map(ProductPreference::toString).orElse(""));
+        }
     }
 }
