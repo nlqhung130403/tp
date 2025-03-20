@@ -18,8 +18,8 @@ public class RankCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Ranks all clients based on "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " frequency";
+            + "Parameters: KEYWORD [MORE_KEYWORD]\n"
+            + "Example: " + COMMAND_WORD + " total";
 
     private final Comparator<Client> comparator;
 
