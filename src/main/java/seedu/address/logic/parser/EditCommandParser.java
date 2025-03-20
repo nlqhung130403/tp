@@ -4,11 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FREQUENCY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PREFERENCE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FREQUENCY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -20,7 +20,6 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditClientDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Frequency;
-import seedu.address.model.client.ProductPreference;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -68,7 +67,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             editClientDescriptor.setProductPreference(ParserUtil.parseProductPreference(
                     argMultimap.getValue(PREFIX_PREFERENCE), frequency));
         }
-        if (argMultimap.getValue(PREFIX_FREQUENCY).isPresent() && !argMultimap.getValue(PREFIX_PREFERENCE).isPresent()) {
+        if (argMultimap.getValue(PREFIX_FREQUENCY).isPresent()
+                && !argMultimap.getValue(PREFIX_PREFERENCE).isPresent()) {
             throw new ParseException(EditCommand.MESSAGE_FREQUENCY_NOT_ALLOWED);
         }
 
