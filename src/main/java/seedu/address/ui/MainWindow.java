@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.client.Client;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private ClientListPanel clientListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ClientDetailPanel clientDetailPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -49,6 +51,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane viewContainer;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -110,8 +115,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        clientListPanel = new ClientListPanel(logic.getSortedFilteredClientList());
-        clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
+        showListView();
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -163,6 +167,30 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Decide if expanded window is needed
+     * @param commandResult
+     */
+    private void handleCommandResult(CommandResult commandResult) {
+        if (commandResult.isShowExpandedView()) {
+            showExpandedView(commandResult.getExpandedClient());
+        } else {
+            showListView();
+        }
+    }
+
+    private void showExpandedView(Client client) {
+        viewContainer.getChildren().clear();
+        clientDetailPanel = new ClientDetailPanel(client);
+        viewContainer.getChildren().add(clientDetailPanel.getRoot());
+    }
+
+    private void showListView() {
+        viewContainer.getChildren().clear();
+        clientListPanel = new ClientListPanel(logic.getSortedFilteredClientList());
+        viewContainer.getChildren().add(clientListPanel.getRoot());
+    }
+
     public ClientListPanel getClientListPanel() {
         return clientListPanel;
     }
@@ -185,6 +213,8 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+
+            handleCommandResult(commandResult);
 
             return commandResult;
         } catch (CommandException | ParseException e) {

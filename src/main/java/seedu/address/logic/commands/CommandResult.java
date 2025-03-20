@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.client.Client;
 
 /**
  * Represents the result of a command execution.
@@ -19,6 +20,12 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** To expand the view */
+    private final boolean showExpandedView;
+
+    /** Client selected to be expanded */
+    private final Client expandedClient;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -26,6 +33,8 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.showExpandedView = false;
+        this.expandedClient = null;
     }
 
     /**
@@ -34,6 +43,18 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser, false, false);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with showExpandedView and expandedClient
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
+                         boolean showExpandedView, Client expandedClient) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.showExpandedView = showExpandedView;
+        this.expandedClient = expandedClient;
     }
 
     public String getFeedbackToUser() {
@@ -46,6 +67,14 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isShowExpandedView() {
+        return showExpandedView;
+    }
+
+    public Client getExpandedClient() {
+        return expandedClient;
     }
 
     @Override
