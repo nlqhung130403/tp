@@ -22,7 +22,7 @@ public class ClientDetailPanel extends UiPart<Region> {
         phone.setText("Phone: " + client.getPhone().value);
         email.setText("Email: " + client.getEmail().value);
         address.setText("Address: " + client.getAddress().value);
-        frequency.setText("Purchase Frequency: " + client.getFrequency());
+        frequency.setText("Purchase Frequency: " + client.getTotalPurchase());
         productPreference.setText("Preferred Products: " + client.getProductPreference());
     }
 }

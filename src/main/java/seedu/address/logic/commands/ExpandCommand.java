@@ -27,7 +27,7 @@ public class ExpandCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Client> filteredList = model.getFilteredPersonList();
+        List<Client> filteredList = model.getSortedFilteredClientList();
 
         if (targetIndex.getZeroBased() >= filteredList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
