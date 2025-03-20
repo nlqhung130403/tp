@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalClients.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,11 +27,11 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newPerson_success() {
+    public void execute_newClient_success() {
         Client validClient = new ClientBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addPerson(validClient);
+        expectedModel.addClient(validClient);
 
         assertCommandSuccess(new AddCommand(validClient), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validClient)),
@@ -39,8 +39,8 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Client clientInList = model.getAddressBook().getPersonList().get(0);
+    public void execute_duplicateClient_throwsCommandException() {
+        Client clientInList = model.getAddressBook().getClientList().get(0);
         assertCommandFailure(new AddCommand(clientInList), model,
                 AddCommand.MESSAGE_DUPLICATE_PERSON);
     }

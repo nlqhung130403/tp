@@ -37,7 +37,7 @@ public class ProductPreferenceContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different client -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 

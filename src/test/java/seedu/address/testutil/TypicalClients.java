@@ -19,15 +19,16 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.client.Client;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Client} objects to be used in tests.
  */
-public class TypicalPersons {
+public class TypicalClients {
 
     public static final Client ALICE = new ClientBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111")
             .withEmail("alice@example.com")
             .withPhone("94351253")
             .withTags("friends")
+            .withTotalPurchase(10)
             .withProductPreference("shampoo")
             .build();
     public static final Client BENSON = new ClientBuilder().withName("Benson Meier")
@@ -35,12 +36,14 @@ public class TypicalPersons {
             .withEmail("johnd@example.com")
             .withPhone("98765432")
             .withTags("owesMoney", "friends")
+            .withTotalPurchase(9)
             .withProductPreference("cherry shampoo")
             .build();
     public static final Client CARL = new ClientBuilder().withName("Carl Kurz")
             .withPhone("95352563")
             .withEmail("heinz@example.com")
             .withAddress("wall street")
+            .withTotalPurchase(4)
             .withProductPreference("coffee book")
             .build();
     public static final Client DANIEL = new ClientBuilder().withName("Daniel Meier")
@@ -48,24 +51,28 @@ public class TypicalPersons {
             .withEmail("cornelia@example.com")
             .withAddress("10th street")
             .withTags("friends")
+            .withTotalPurchase(2)
             .withProductPreference("recipe book")
             .build();
     public static final Client ELLE = new ClientBuilder().withName("Elle Meyer")
             .withPhone("19482224")
             .withEmail("werner@example.com")
             .withAddress("michegan ave")
+            .withTotalPurchase(5)
             .withProductPreference("tea cup")
             .build();
     public static final Client FIONA = new ClientBuilder().withName("Fiona Kunz")
             .withPhone("19482427")
             .withEmail("lydia@example.com")
             .withAddress("little tokyo")
+            .withTotalPurchase(6)
             .withProductPreference("coffee cup")
             .build();
     public static final Client GEORGE = new ClientBuilder().withName("George Best")
             .withPhone("19482442")
             .withEmail("anna@example.com")
             .withAddress("4th street")
+            .withTotalPurchase(3)
             .withProductPreference("tea bag")
             .build();
 
@@ -74,16 +81,18 @@ public class TypicalPersons {
             .withPhone("84827424")
             .withEmail("stefan@example.com")
             .withAddress("little india")
+            .withTotalPurchase(5)
             .withProductPreference("shampoo")
             .build();
     public static final Client IDA = new ClientBuilder().withName("Ida Mueller")
             .withPhone("84872131")
             .withEmail("hans@example.com")
             .withAddress("chicago ave")
+            .withTotalPurchase(2)
             .withProductPreference("coffee")
             .build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
+    // Manually added - Client's details found in {@code CommandTestUtil}
     public static final Client AMY = new ClientBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
     public static final Client BOB = new ClientBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
@@ -92,20 +101,31 @@ public class TypicalPersons {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPersons() {} // prevents instantiation
+    private TypicalClients() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code AddressBook} with all the typical clients.
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
-        for (Client client : getTypicalPersons()) {
-            ab.addPerson(client);
+        for (Client client : getTypicalClients()) {
+            ab.addClient(client);
         }
         return ab;
     }
 
-    public static List<Client> getTypicalPersons() {
+    public static List<Client> getTypicalClients() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    /**
+     * Returns a {@code List} with all the typical clients sorted by frequency.
+     */
+    public static List<Client> getSortedTypicalClients() {
+        List<Client> typicalClients = getTypicalClients();
+        typicalClients.sort((c1, c2) ->
+                Integer.compare(c2.getTotalPurchase(), c1.getTotalPurchase())
+        );
+        return typicalClients;
     }
 }

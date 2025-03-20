@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditClientDescriptor;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
@@ -13,25 +13,25 @@ import seedu.address.model.client.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditClientDescriptor objects.
  */
 public class EditClientDescriptorBuilder {
 
-    private EditPersonDescriptor descriptor;
+    private EditClientDescriptor descriptor;
 
     public EditClientDescriptorBuilder() {
-        descriptor = new EditPersonDescriptor();
+        descriptor = new EditClientDescriptor();
     }
 
-    public EditClientDescriptorBuilder(EditPersonDescriptor descriptor) {
-        this.descriptor = new EditPersonDescriptor(descriptor);
+    public EditClientDescriptorBuilder(EditClientDescriptor descriptor) {
+        this.descriptor = new EditClientDescriptor(descriptor);
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditClientDescriptor} with fields containing {@code client}'s details
      */
     public EditClientDescriptorBuilder(Client client) {
-        descriptor = new EditPersonDescriptor();
+        descriptor = new EditClientDescriptor();
         descriptor.setName(client.getName());
         descriptor.setPhone(client.getPhone());
         descriptor.setEmail(client.getEmail());
@@ -40,7 +40,7 @@ public class EditClientDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Name} of the {@code EditClientDescriptor} that we are building.
      */
     public EditClientDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
@@ -48,7 +48,7 @@ public class EditClientDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Phone} of the {@code EditClientDescriptor} that we are building.
      */
     public EditClientDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
@@ -56,7 +56,7 @@ public class EditClientDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Email} of the {@code EditClientDescriptor} that we are building.
      */
     public EditClientDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
@@ -64,7 +64,7 @@ public class EditClientDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Address} of the {@code EditClientDescriptor} that we are building.
      */
     public EditClientDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
@@ -72,7 +72,7 @@ public class EditClientDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditClientDescriptor}
      * that we are building.
      */
     public EditClientDescriptorBuilder withTags(String... tags) {
@@ -81,7 +81,7 @@ public class EditClientDescriptorBuilder {
         return this;
     }
 
-    public EditPersonDescriptor build() {
+    public EditClientDescriptor build() {
         return descriptor;
     }
 }
