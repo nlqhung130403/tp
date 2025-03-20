@@ -101,8 +101,7 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(clientToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(clientToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(clientToEdit.getTags());
-        //TODO: Implement ProductPreference here
-        ProductPreference productPreference = clientToEdit.getProductPreference();
+        Optional<ProductPreference> productPreference = clientToEdit.getProductPreference();
 
         return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, productPreference);
     }
