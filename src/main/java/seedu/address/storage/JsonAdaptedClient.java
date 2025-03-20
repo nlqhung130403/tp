@@ -116,19 +116,18 @@ class JsonAdaptedClient {
 
         final Set<Tag> modelTags = new HashSet<>(clientTags);
 
-        //TODO: Change later on
+
+        if (productPreference == null) {
+            return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags,
+                    Optional.ofNullable(null));
+        }
+
         if (!Frequency.isValidFrequency(totalPurchase)) {
             throw new IllegalValueException(Frequency.MESSAGE_CONSTRAINTS);
         }
         final Frequency productFrequency = new Frequency(totalPurchase);
 
-        if (productPreference == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ProductPreference.class.getSimpleName()));
-        }
         final ProductPreference modelProductPreference = new ProductPreference(productPreference, productFrequency);
-
-
 
         return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags,
                 Optional.of(modelProductPreference));

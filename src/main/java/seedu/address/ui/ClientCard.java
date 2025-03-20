@@ -61,7 +61,8 @@ public class ClientCard extends UiPart<Region> {
         if (client.getProductPreference().isPresent()) {
             productPreferenceWithFrequency.getChildren()
                     .add(new Label(client.getProductPreference()
-                            .map(ProductPreference::toString).orElse("") + ": " + client.getTotalPurchase()));
+                            .map(ProductPreference::toString).orElse("") + ": "
+                            + client.getProductPreference().get().frequency));
         }
     }
 }
