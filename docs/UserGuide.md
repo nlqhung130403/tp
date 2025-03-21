@@ -39,6 +39,10 @@ ClientConnect is a **desktop app for managing contacts, optimized for use via a 
 
    * `exit` : Exits the app.
 
+   * `find friends` : Finds all contacts that has the word `friends` in either of their names, tags, or product preferences.
+
+   * `rank name` : Ranks the contacts based on the clients' names.
+
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -125,21 +129,27 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Name, product preference and category can be searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Clients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Name, product preference and tags can be searched.
+* As such, combinations of words from the different attributes are also possible to search.
+ e.g. `shampoo friends` will return all matching clients with the `friend` tag or `shampoo` product preference.
+ 
 
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-* `find shampoo` returns `Shampoo` and `Cherry Shampoo` in the product preference
-  ![result for 'find shampoo'](images/findShampoo.png)
+* `find shampoo` returns `Shampoo` and `Cherry Shampoo` in the product preference.<br>
+  ![result for 'find shampoo'](images/findShampooResult.png)
 
-* `find classmates` returns `classmates` in the category
-![result for 'find shampoo'](images/findClassmate.png)
+* `find classmates` returns `classmates` in the tag<br>
+  ![result for 'find shampoo'](images/findClassmatesResult.png)
+
+* `find shampoo friends` returns `friends` in the tags and/ or `shampoo` in the product preference.<br>
+  ![result for 'find shampoo friends'](images/findShampooFriendsResult.png)
 
 ### Deleting a client : `delete`
 
@@ -154,6 +164,28 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd client in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
+
+### Ranking clients : `rank`
+
+Ranks the current list of clients shown on the interface.
+
+Format: `rank KEYWORD`
+
+* Ranks the current list of clients by the specified `KEYWORD`.
+* The ranking is case-insensitive. e.g. `Name` can still rank properly by `name`.
+* The keyword refers to the attribute or factor to rank the clients by.
+* The keyword must be one of the defined keywords.
+* Some examples of `KEYWORD`:
+  * `total` to rank by the clients' total purchase in descending order.
+  * `name` to rank by the clients' names in lexicographic order (i.e. ascending order alphabetically and numerically).
+
+Examples:
+* `list` (automatically ranks by name) followed by `rank total` ranks all clients by their total purchase.<br>
+  ![result for 'list' then 'rank total'](images/listThenRankTotalResult.png)
+
+* `find shampoo` followed by `rank name` ranks all clients that are found by the `find` command by their names in lexicographical order.<br>
+  ![result for 'find shampoo' then 'rank name'](images/findShampooThenRankName.png)
+
 
 ### Clearing all entries : `clear`
 
