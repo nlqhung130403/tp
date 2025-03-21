@@ -52,7 +52,7 @@ class JsonAdaptedClient {
         if (tags != null) {
             this.tags.addAll(tags);
         }
-        this.productPreference = Objects.requireNonNullElse(productPreference, "");
+        this.productPreference = productPreference;
         this.totalPurchase = totalPurchase;
     }
 
@@ -123,7 +123,7 @@ class JsonAdaptedClient {
         final Frequency productFrequency = new Frequency(totalPurchase);
 
         final Optional<ProductPreference> modelProductPreference;
-        if (productPreference.isEmpty()) {
+        if (productPreference == null || productPreference.isEmpty()) {
             modelProductPreference = Optional.empty();
         } else {
             modelProductPreference = Optional.of(new ProductPreference(productPreference, productFrequency));
