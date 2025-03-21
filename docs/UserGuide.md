@@ -155,6 +155,20 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd client in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
+### Expanded view of a client : `expand`
+
+Expand the window to see more details about a client.
+
+Format: `expand INDEX`
+
+* Expand the view of the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `expand 2` expands the window of the 2nd client in the address book.
+* `find Betsy` followed by `expand 1` expands the window of the 1st client in the results of the `find` command.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
