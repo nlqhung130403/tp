@@ -116,21 +116,20 @@ class JsonAdaptedClient {
 
         final Set<Tag> modelTags = new HashSet<>(clientTags);
 
-
-        if (productPreference == null) {
-            return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags,
-                    Optional.ofNullable(null));
-        }
-
         if (!Frequency.isValidFrequency(totalPurchase)) {
             throw new IllegalValueException(Frequency.MESSAGE_CONSTRAINTS);
         }
         final Frequency productFrequency = new Frequency(totalPurchase);
 
-        final ProductPreference modelProductPreference = new ProductPreference(productPreference, productFrequency);
+        final Optional<ProductPreference> modelProductPreference;
+        if (productPreference == null || productPreference.isEmpty()) {
+            modelProductPreference = Optional.empty();
+        } else {
+            modelProductPreference = Optional.of(new ProductPreference(productPreference, productFrequency));
+        }
 
         return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags,
-                Optional.of(modelProductPreference));
+                modelProductPreference);
     }
 
 }
