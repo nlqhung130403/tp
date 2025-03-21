@@ -121,19 +121,20 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
 
-### Locating clients by name: `find`
+### Locating clients: `find`
 
-Finds clients whose names contain any of the given keywords.
+You can find clients whose names contain any of the given keywords. You'll have access to certain clients who are tagged specifically or had purchased a certain product from you.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+You may use the following format for searching:<br>
+`find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search ignores letter case. For example, `hans` will match `Hans`
+* The order of the keywords does not matter as well. It does not matter whether you search for `Hans Bo` or `Bo Hans`, they are the same.
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Clients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 * Name, product preference and tags can be searched.
-* As such, combinations of words from the different attributes are also possible to search.
+* As such, you may use combinations of words from the different attributes to search for multiple clients with mix attributes.
  e.g. `shampoo friends` will return all matching clients with the `friend` tag or `shampoo` product preference.
  
 
@@ -167,17 +168,20 @@ Examples:
 
 ### Ranking clients : `rank`
 
-Ranks the current list of clients shown on the interface.
+After a lot of searching and listing, you may want to find out clients that have higher priority than others. In ClientConnect, ranking is possible to sort the current list of clients shown on the screen.
 
-Format: `rank KEYWORD`
+Type in the following format, using the keyword that you would like to rank your clients by:<br>
+`rank KEYWORD`
+
+> ❗ **NOTE**<br>
+> * The keyword must be one of the defined keywords.
+> * Some examples of `KEYWORD`:
+>   * `total` to rank by the clients' total purchase in descending order.
+>   * `name` to rank by the clients' names in lexicographic order (i.e. ascending order alphabetically and numerically).
 
 * Ranks the current list of clients by the specified `KEYWORD`.
-* The ranking is case-insensitive. e.g. `Name` can still rank properly by `name`.
-* The keyword refers to the attribute or factor to rank the clients by.
-* The keyword must be one of the defined keywords.
-* Some examples of `KEYWORD`:
-  * `total` to rank by the clients' total purchase in descending order.
-  * `name` to rank by the clients' names in lexicographic order (i.e. ascending order alphabetically and numerically).
+* The keyword refers to the attribute or factor you may rank the clients by.
+* The sorting would work regardless of letter case. For instance, `Name` and `name` would be ranked the same way.
 
 Examples:
 * `list` (automatically ranks by name) followed by `rank total` ranks all clients by their total purchase.<br>
