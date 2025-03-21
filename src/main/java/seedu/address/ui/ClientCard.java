@@ -43,7 +43,8 @@ public class ClientCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private FlowPane productPreferenceWithFrequency;
-
+    @FXML
+    private FlowPane totalPurchase;
     /**
      * Creates a {@code ClientCode} with the given {@code Client} and index to display.
      */
@@ -58,6 +59,7 @@ public class ClientCard extends UiPart<Region> {
         client.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        totalPurchase.getChildren().add(new Label("total purchase: " + String.valueOf(client.getTotalPurchase())));
         if (client.getProductPreference().isPresent()) {
             productPreferenceWithFrequency.getChildren()
                     .add(new Label(client.getProductPreference()

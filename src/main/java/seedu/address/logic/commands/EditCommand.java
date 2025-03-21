@@ -49,6 +49,7 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
+    public static final String MESSAGE_FREQUENCY_NOT_ALLOWED = "Frequency is not allowed as an alone parameter.";
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Client: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This client already exists in the address book.";
@@ -101,7 +102,8 @@ public class EditCommand extends Command {
         Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
         Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
-        Optional<ProductPreference> updatedProductPreference = clientToEdit.getProductPreference();
+        Optional<ProductPreference> updatedProductPreference =
+                editClientDescriptor.getProductPreference().or(() -> clientToEdit.getProductPreference());
 
         return new Client(updatedName, updatedPhone, updatedEmail,
                 updatedAddress, updatedTags, updatedProductPreference);
@@ -141,7 +143,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
-        private ProductPreference productPreference;
+        private Optional<ProductPreference> productPreference = Optional.ofNullable(null);
 
         public EditClientDescriptor() {}
 
@@ -162,7 +164,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, productPreference.orElse(null));
         }
 
         public void setName(Name name) {
@@ -205,12 +207,12 @@ public class EditCommand extends Command {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
-        public void setProductPreference(ProductPreference productPreference) {
+        public void setProductPreference(Optional<ProductPreference> productPreference) {
             this.productPreference = productPreference;
         }
 
         public Optional<ProductPreference> getProductPreference() {
-            return Optional.ofNullable(productPreference);
+            return productPreference;
         }
 
         /**
@@ -238,7 +240,8 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditClientDescriptor.phone)
                     && Objects.equals(email, otherEditClientDescriptor.email)
                     && Objects.equals(address, otherEditClientDescriptor.address)
-                    && Objects.equals(tags, otherEditClientDescriptor.tags);
+                    && Objects.equals(tags, otherEditClientDescriptor.tags)
+                    && Objects.equals(productPreference, otherEditClientDescriptor.productPreference);
         }
 
         @Override
@@ -249,6 +252,7 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("address", address)
                     .add("tags", tags)
+                    .add("productPreference", productPreference.orElse(null))
                     .toString();
         }
     }
