@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -32,8 +33,10 @@ class JsonAdaptedClient {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private final String productPreference;
-    private final int totalPurchase;
+    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
+    private final int frequency;
 
     /**
      * Constructs a {@code JsonAdaptedClient} with the given client details.
@@ -43,7 +46,7 @@ class JsonAdaptedClient {
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
                              @JsonProperty("productPreference") String productPreference,
-                             @JsonProperty("totalPurchase") int totalPurchase) {
+                             @JsonProperty("frequency") int frequency) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -52,7 +55,7 @@ class JsonAdaptedClient {
             this.tags.addAll(tags);
         }
         this.productPreference = productPreference;
-        this.totalPurchase = totalPurchase;
+        this.frequency = frequency;
     }
 
     /**
@@ -67,8 +70,11 @@ class JsonAdaptedClient {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         productPreference = source.getProductPreference()
-                .map(ProductPreference::toString).orElse("");
-        totalPurchase = source.getTotalPurchase();
+                .map(ProductPreference::toString)
+                .orElse(null);
+        frequency = source.getProductPreference()
+                .map(preference -> preference.getFrequency().frequency)
+                .orElse(0);
     }
 
     /**
@@ -116,20 +122,20 @@ class JsonAdaptedClient {
 
         final Set<Tag> modelTags = new HashSet<>(clientTags);
 
-        if (!Frequency.isValidFrequency(totalPurchase)) {
+        if (productPreference == null) {
+            return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags,
+                    Optional.ofNullable(null));
+        }
+
+        if (!Frequency.isValidFrequency(frequency)) {
             throw new IllegalValueException(Frequency.MESSAGE_CONSTRAINTS);
         }
-        final Frequency productFrequency = new Frequency(totalPurchase);
+        final Frequency productFrequency = new Frequency(frequency);
 
-        final Optional<ProductPreference> modelProductPreference;
-        if (productPreference == null || productPreference.isEmpty()) {
-            modelProductPreference = Optional.empty();
-        } else {
-            modelProductPreference = Optional.of(new ProductPreference(productPreference, productFrequency));
-        }
+        final ProductPreference modelProductPreference = new ProductPreference(productPreference, productFrequency);
 
         return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags,
-                modelProductPreference);
+                Optional.of(modelProductPreference));
     }
 
 }
