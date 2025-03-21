@@ -167,7 +167,8 @@ Format: `expand INDEX`
 
 Examples:
 * `list` followed by `expand 2` expands the window of the 2nd client in the address book.
-* `find Betsy` followed by `expand 1` expands the window of the 1st client in the results of the `find` command.
+* `find Joe` followed by `expand 1` expands the window of the 1st client in the results of the `find` command.
+![result for 'expand 1'](images/ExpandCommandUi.png)
 
 ### Clearing all entries : `clear`
 
