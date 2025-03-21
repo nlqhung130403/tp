@@ -3,6 +3,7 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -51,7 +52,7 @@ class JsonAdaptedClient {
         if (tags != null) {
             this.tags.addAll(tags);
         }
-        this.productPreference = productPreference;
+        this.productPreference = Objects.requireNonNullElse(productPreference, "");
         this.totalPurchase = totalPurchase;
     }
 
@@ -116,21 +117,20 @@ class JsonAdaptedClient {
 
         final Set<Tag> modelTags = new HashSet<>(clientTags);
 
-
-        if (productPreference == null) {
-            return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags,
-                    Optional.ofNullable(null));
-        }
-
         if (!Frequency.isValidFrequency(totalPurchase)) {
             throw new IllegalValueException(Frequency.MESSAGE_CONSTRAINTS);
         }
         final Frequency productFrequency = new Frequency(totalPurchase);
 
-        final ProductPreference modelProductPreference = new ProductPreference(productPreference, productFrequency);
+        final Optional<ProductPreference> modelProductPreference;
+        if (productPreference.isEmpty()) {
+            modelProductPreference = Optional.empty();
+        } else {
+            modelProductPreference = Optional.of(new ProductPreference(productPreference, productFrequency));
+        }
 
         return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags,
-                Optional.of(modelProductPreference));
+                modelProductPreference);
     }
 
 }
