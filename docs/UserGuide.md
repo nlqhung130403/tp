@@ -73,11 +73,14 @@ ClientConnect is a **desktop app for managing contacts, optimized for use via a 
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+You may feel stuck after using ClientConnect for a while. To review how it's used, you can show a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
+Just typing the following and you will get your help in no time:
+```
+help
+```
 
 
 ### Adding a client: `add`
@@ -126,7 +129,9 @@ Examples:
 You can find clients whose names contain any of the given keywords. You'll have access to certain clients who are tagged specifically or had purchased a certain product from you.
 
 You may use the following format for searching:<br>
-`find KEYWORD [MORE_KEYWORDS]`
+```
+find KEYWORD [MORE_KEYWORDS]
+```
 
 * The search ignores letter case. For example, `hans` will match `Hans`
 * The order of the keywords does not matter as well. It does not matter whether you search for `Hans Bo` or `Bo Hans`, they are the same.
@@ -171,7 +176,9 @@ Examples:
 After a lot of searching and listing, you may want to find out clients that have higher priority than others. In ClientConnect, ranking is possible to sort the current list of clients shown on the screen.
 
 Type in the following format, using the keyword that you would like to rank your clients by:<br>
-`rank KEYWORD`
+```
+rank KEYWORD
+```
 
 > ❗ **NOTE**<br>
 > * The keyword must be one of the defined keywords.
