@@ -143,31 +143,35 @@ Examples:
 
 ### Deleting a client : `delete`
 
-Deletes the specified client from the address book.
+You can remove a client from your address book using the **delete** command. To do so, type:
 
-Format: `delete INDEX`
+```
+expand INDEX
+```
 
-* Deletes the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd client in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
-
-### Expanded view of a client : `expand`
-
-Expand the window to see more details about a client.
-
-Format: `expand INDEX`
-
-* Expand the view of the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Replace **INDEX** with the number corresponding to the client in your current list 
+* For example, 1 for the first client, 2 for the second, etc.
+> Remember, the INDEX must be a **positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `expand 2` expands the window of the 2nd client in the address book.
-* `find Joe` followed by `expand 1` expands the window of the 1st client in the results of the `find` command.
+* If you run the `list` command, then typing `delete 2` will remove the second client from your address book.
+* After using the `find Betsy` command, typing `delete 1` will remove the first client from the search results.
+
+### Expand Client View:
+
+You can use the **expand** command to see more details about a specific client. Just type:
+
+```
+expand INDEX
+```
+
+* where INDEX is the position number of the client in your current list. 
+* for example, 1 for the first client, 2 for the second, and so on
+> The INDEX must be a **positive integer** 1, 2, 3, …​
+
+Examples:
+* After running the `list` command, typing `expand 2` will show more details for the second client.
+* If you search with `find Joe`, then typing `expand 1` will display the details for the first client in your search results.
 ![result for 'expand 1'](images/ExpandCommandUi.png)
 
 ### Clearing all entries : `clear`
