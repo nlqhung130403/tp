@@ -93,29 +93,41 @@ Examples:
 
 ### Listing all clients : `list`
 
-Shows a list of all clients in the address book.
+Ready to see all your amazing contacts? Just type:
 
-Format: `list`
+```
+list
+```
+
+* This command will display a complete list of every client in your address book, so you can easily check out all your contacts at a glance. Enjoy the view!
+![result for 'list'](images/ListCommandUiResult.png)
 
 ### Editing a client : `edit`
 
-Edits an existing client in the address book.
+Ready to update a client’s details? With the `edit` command, you can easily change information like name, phone number, 
+email, address, tags, and product preferences! Just follow this format:
 
-Format: `edit INDEX [name/NAME] [phone/PHONE] [email/EMAIL] [address/ADDRESS] [tag/TAG] [pref/PRODUCT PREFERENCE] [freq/PRODUCT FREQUENCY]…​`
+```
+edit INDEX [name/NAME] [phone/PHONE] [email/EMAIL] [address/ADDRESS] [tag/TAG] [pref/PRODUCT PREFERENCE] [freq/PRODUCT FREQUENCY]…​`
+```
 
-* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
-* You can remove all the client’s tags by typing `t/` without
-    specifying any tags after it.
-* When editing product preference, both `pref/` and `freq/` need to be present.
-* If only `pref/` is present, its frequency is automatically initialized to 0.
-* However, command with only `freq/` without `pref/` is an invalid command.
+Here's how it works:
+* **Select Your Client:** Replace **INDEX** with the client’s number from your current list.
+> Remember, it must be a positive integer.
+* **Update Your Info:** Add one or more optional fields to update specific details. At least one field must be provided.
+* **Automatic Replacement:** Each field you specify will replace the existing value. For tags, the old ones are completely removed—unless you leave them out.
+* **Clear Tags:** To remove all tags, simply type `tag/` without any tags following it.
+* **Product Preferences:** When updating product preferences, include both `pref/` and `freq/` together. 
+If you only provide `pref/`, the frequency defaults to 0.
+> Using only `freq/` without `pref/` isn’t allowed.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
+*  **Update Contact Info:**
+   Type `edit 1 phone/91234567 email/johndoe@example.com` to instantly change the phone number and email of the 1st client to 91234567 and johndoe@example.com.
+*  **Rename and Reset Tags:**
+   Type `edit 1 name/Betsy Crower tag/` to update the 1st client’s name to Betsy Crower while clearing all their tags.
+   ![result for 'before edit'](images/EditCommandUi_BeforeEditResult.png)<br>
+   ![result for 'before edit'](images/EditCommandUi_AfterEditResult.png)
 
 ### Locating clients by name: `find`
 
@@ -143,29 +155,58 @@ Examples:
 
 ### Deleting a client : `delete`
 
-Deletes the specified client from the address book.
+You can remove a client from your address book using the **delete** command. To do so, type:
 
-Format: `delete INDEX`
+```
+expand INDEX
+```
 
-* Deletes the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Replace **INDEX** with the number corresponding to the client in your current list 
+* For example, 1 for the first client, 2 for the second, etc.
+> Remember, the INDEX must be a **positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd client in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
+* After using the `find Betsy` command, typing `delete 1` will remove the 1st client from the search results.
+* If you run the `list` command, then typing `delete 7` will remove the 7th client from your address book.<br>
+  ![result for 'before delete 7'](images/DeleteCommandUi_BeforeDeleteResult.png)<br>
+  ![result for 'after delete 7'](images/DeleteCommandUi_AfterDeleteResult.png)
+
+### Expand Client View: `expand`
+
+You can use the **expand** command to see more details about a specific client. Just type:
+
+```
+expand INDEX
+```
+
+* where INDEX is the position number of the client in your current list. 
+* for example, 1 for the first client, 2 for the second, and so on
+> The INDEX must be a **positive integer** 1, 2, 3, …​
+
+Examples:
+* After running the `list` command, typing `expand 2` will show more details for the second client.
+* If you search with `find Joe`, then typing `expand 1` will display the details for the first client in your search results.<br>
+![result for 'expand 1'](images/ExpandCommandUi.png)
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+To remove every client from your address book at once, just type:
 
-Format: `clear`
+```
+clear
+```
+
+This command will instantly wipe all entries for you.<br>
+![result for 'clear'](images/ClearCommandUi.png)
 
 ### Exiting the program : `exit`
 
-Exits the program.
+When you're ready to close the application, simply type:
 
-Format: `exit`
+```
+exit
+```
+You can move on to your day feeling prepared.
 
 ### Saving the data
 
