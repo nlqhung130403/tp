@@ -39,6 +39,10 @@ ClientConnect is a **desktop app for managing contacts, optimized for use via a 
 
    * `exit` : Exits the app.
 
+   * `find friends` : Finds all contacts that has the word `friends` in either of their names, tags, or product preferences.
+
+   * `rank name` : Ranks the contacts based on the clients' names.
+
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -69,11 +73,14 @@ ClientConnect is a **desktop app for managing contacts, optimized for use via a 
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+You may feel stuck after using ClientConnect for a while. To review how it's used, you can show a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
+Just typing the following and you will get your help in no time:
+```
+help
+```
 
 
 ### Adding a client: `add`
@@ -129,29 +136,38 @@ Examples:
    ![result for 'before edit'](images/EditCommandUi_BeforeEditResult.png)<br>
    ![result for 'before edit'](images/EditCommandUi_AfterEditResult.png)
 
-### Locating clients by name: `find`
+### Locating clients: `find`
 
-Finds clients whose names contain any of the given keywords.
+You can find clients whose names contain any of the given keywords. You'll have access to certain clients who are tagged specifically or had purchased a certain product from you.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+You may use the following format for searching:<br>
+```
+find KEYWORD [MORE_KEYWORDS]
+```
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Name, product preference and category can be searched.
+* The search ignores letter case. For example, `hans` will match `Hans`
+* The order of the keywords does not matter as well. It does not matter whether you search for `Hans Bo` or `Bo Hans`, they are the same.
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Clients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Name, product preference and tags can be searched.
+* As such, you may use combinations of words from the different attributes to search for multiple clients with mix attributes.
+ e.g. `shampoo friends` will return all matching clients with the `friend` tag or `shampoo` product preference.
+ 
 
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-* `find shampoo` returns `Shampoo` and `Cherry Shampoo` in the product preference
-  ![result for 'find shampoo'](images/findShampoo.png)
+* `find shampoo` returns `Shampoo` and `Cherry Shampoo` in the product preference.<br>
+  ![result for 'find shampoo'](images/findShampooResult.png)
 
-* `find classmates` returns `classmates` in the category
-![result for 'find shampoo'](images/findClassmate.png)
+* `find classmates` returns `classmates` in the tag<br>
+  ![result for 'find shampoo'](images/findClassmatesResult.png)
+
+* `find shampoo friends` returns `friends` in the tags and/ or `shampoo` in the product preference.<br>
+  ![result for 'find shampoo friends'](images/findShampooFriendsResult.png)
 
 ### Deleting a client : `delete`
 
@@ -187,6 +203,33 @@ Examples:
 * After running the `list` command, typing `expand 2` will show more details for the second client.
 * If you search with `find Joe`, then typing `expand 1` will display the details for the first client in your search results.<br>
 ![result for 'expand 1'](images/ExpandCommandUi.png)
+
+### Ranking clients : `rank`
+
+After a lot of searching and listing, you may want to find out clients that have higher priority than others. In ClientConnect, ranking is possible to sort the current list of clients shown on the screen.
+
+Type in the following format, using the keyword that you would like to rank your clients by:<br>
+```
+rank KEYWORD
+```
+
+> ❗ **NOTE**<br>
+> * The keyword must be one of the defined keywords.
+> * Some examples of `KEYWORD`:
+>   * `total` to rank by the clients' total purchase in descending order.
+>   * `name` to rank by the clients' names in lexicographic order (i.e. ascending order alphabetically and numerically).
+
+* Ranks the current list of clients by the specified `KEYWORD`.
+* The keyword refers to the attribute or factor you may rank the clients by.
+* The sorting would work regardless of letter case. For instance, `Name` and `name` would be ranked the same way.
+
+Examples:
+* `list` (automatically ranks by name) followed by `rank total` ranks all clients by their total purchase.<br>
+  ![result for 'list' then 'rank total'](images/listThenRankTotalResult.png)
+
+* `find shampoo` followed by `rank name` ranks all clients that are found by the `find` command by their names in lexicographical order.<br>
+  ![result for 'find shampoo' then 'rank name'](images/findShampooThenRankName.png)
+
 
 ### Clearing all entries : `clear`
 
