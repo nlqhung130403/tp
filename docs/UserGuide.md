@@ -157,7 +157,7 @@ Examples:
 * If you run the `list` command, then typing `delete 2` will remove the second client from your address book.
 * After using the `find Betsy` command, typing `delete 1` will remove the first client from the search results.
 
-### Expand Client View:
+### Expand Client View: `expand`
 
 You can use the **expand** command to see more details about a specific client. Just type:
 
@@ -171,20 +171,28 @@ expand INDEX
 
 Examples:
 * After running the `list` command, typing `expand 2` will show more details for the second client.
-* If you search with `find Joe`, then typing `expand 1` will display the details for the first client in your search results.
+* If you search with `find Joe`, then typing `expand 1` will display the details for the first client in your search results.<br>
 ![result for 'expand 1'](images/ExpandCommandUi.png)
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+To remove every client from your address book at once, just type:
 
-Format: `clear`
+```
+clear
+```
+
+This command will instantly wipe all entries for you.<br>
+![result for 'clear'](images/ClearCommandUi.png)
 
 ### Exiting the program : `exit`
 
-Exits the program.
+When you're ready to close the application, simply type:
 
-Format: `exit`
+```
+exit
+```
+You can move on to your day feeling prepared.
 
 ### Saving the data
 
