@@ -28,15 +28,17 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]... "
+            + "[" + PREFIX_PREFERENCE + "PRODUCT PREFERENCE] "
+            + "[" + PREFIX_FREQUENCY + "FREQUENCY]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney"
-            + PREFIX_PREFERENCE + "tea bag"
+            + PREFIX_TAG + "owesMoney "
+            + PREFIX_PREFERENCE + "tea bag "
             + PREFIX_FREQUENCY + "1";
 
     public static final String MESSAGE_SUCCESS = "New client added: %1$s";
