@@ -85,22 +85,25 @@ help
 
 ### Adding a client: `add`
 
-Adds a client to the address book.
-
+Adds a client to the address book by just typing:
+```
+add
+```
 Format: `add name/NAME phone/PHONE_NUMBER email/EMAIL address/ADDRESS [tag/TAG] [pref/preference] [freq/frequency]
 
 <box type="tip" seamless>
 
-**Tip:** A client can have any number of tags (including 0)  
-**Tip:** When there is a preference then there should be a frequency. If not, then frequency will be 0 by default.  
-**Tip:** Phone: Only number digits (0-9) of length 8 without spaces  
-**Tip:** Name: Only case-sensitive alphabets (a-z) and one space between each word  
-**Tip:** Address: Any input is ok(if only alphabet and number, then user can not input “#”)  
+- A client can have any number of tags (including 0)  
+- When there is a preference then there should be a frequency. If not, then frequency will be 0 by default. While preference is also optional like tag.  
+- Phone: Only number digits (0-9) of length 8 without spaces  
+- Name: Only case-sensitive alphabets (a-z) and one space between each word  
+- Address: Any input is ok (if only alphabet and number, then user can not input “#”)  
 </box>
 
 Examples:
 * `add name/John Doe phone/98765432 email/johnd@example.com address/John street, block 123, #01-01`  
-* `add name/Betsy Crowe phone/98765432 email/betsycrowe@example.com address/Newgate Prison p/1234567 t/criminal tag/friends pref/tea bag freq/7`  
+* `add name/Betsy Crowe phone/98765432 email/betsycrowe@example.com address/Newgate Prison tag/criminal pref/tea bag freq/7`
+![result for 'add'](images/AddCommandUiResult.png)
 
 ### Listing all clients : `list`
 
