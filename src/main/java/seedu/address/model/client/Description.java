@@ -3,11 +3,20 @@ package seedu.address.model.client;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Client's description in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDescription(String)}
+ */
 public class Description {
     public static final String MESSAGE_CONSTRAINTS = "Description can take any values, and it should not be blank";
 
     public final String description;
 
+    /**
+     * Constructs a {@code Description}.
+     *
+     * @param description A valid description.
+     */
     public Description(String description) {
         requireNonNull(description);
         checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
