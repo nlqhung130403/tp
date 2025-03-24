@@ -1,12 +1,15 @@
 package seedu.address.model.client;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import org.junit.jupiter.api.Test;
+
+/**
+ * Contains unit tests for {@code Description}.
+ */
 public class DescriptionTest {
 
     @Test
@@ -39,9 +42,10 @@ public class DescriptionTest {
         assertTrue(Description.isValidDescription("12345")); // numbers only
         assertTrue(Description.isValidDescription("I am 12345")); // alphanumeric characters
         assertTrue(Description.isValidDescription("I am a description with spaces")); // with spaces
-        assertTrue(Description.isValidDescription("I am a description with special characters like !@#$%^&*()_+")); // with special characters
-        assertTrue(Description.isValidDescription("I am a description with special characters like " +
-                "!@#$%^&*()_+ and numbers 12345")); // with special characters and numbers
+        assertTrue(Description.isValidDescription("I am a description with special characters "
+                + "like !@#$%^&*()_+")); // with special characters
+        assertTrue(Description.isValidDescription("I am a description with special characters like "
+                + "!@#$%^&*()_+ and numbers 12345")); // with special characters and numbers
     }
 
     @Test
