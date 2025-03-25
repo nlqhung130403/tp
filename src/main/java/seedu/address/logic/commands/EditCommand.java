@@ -23,6 +23,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.Description;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
@@ -54,8 +55,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This client already exists in the address book.";
 
-    private final Index index;
-    private final EditClientDescriptor editClientDescriptor;
+    protected final Index index;
+    protected final EditClientDescriptor editClientDescriptor;
 
     /**
      * @param index of the client in the filtered client list to edit
@@ -104,6 +105,8 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
         Optional<ProductPreference> updatedProductPreference =
                 editClientDescriptor.getProductPreference().or(() -> clientToEdit.getProductPreference());
+        Optional<Description> updatedDescription =
+                editClientDescriptor.getDescription().or(() -> Optional.ofNullable(null));
 
         return new Client(updatedName, updatedPhone, updatedEmail,
                 updatedAddress, updatedTags, updatedProductPreference);
@@ -144,6 +147,7 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
         private Optional<ProductPreference> productPreference = Optional.ofNullable(null);
+        private Description description;
 
         public EditClientDescriptor() {}
 
@@ -158,6 +162,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setProductPreference(toCopy.productPreference);
+            setDescription(toCopy.description);
         }
 
         /**
@@ -224,6 +229,14 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setDescription(Description description) {
+            this.description = description;
+        }
+
+        public Optional<Description> getDescription() {
+            return Optional.ofNullable(description);
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -253,6 +266,7 @@ public class EditCommand extends Command {
                     .add("address", address)
                     .add("tags", tags)
                     .add("productPreference", productPreference.orElse(null))
+                    .add("description", description)
                     .toString();
         }
     }
