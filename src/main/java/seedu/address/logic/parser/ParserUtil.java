@@ -15,6 +15,7 @@ import seedu.address.model.client.Email;
 import seedu.address.model.client.Frequency;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.Priority;
 import seedu.address.model.client.ProductPreference;
 import seedu.address.model.tag.Tag;
 
@@ -164,5 +165,21 @@ public class ParserUtil {
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .map(Frequency::new);
+    }
+
+    public static Optional<Priority> parsePriority(Optional<String> priority) throws ParseException {
+        requireNonNull(priority);
+
+        if (!priority.isPresent()) {
+            return Optional.empty();
+        }
+
+        int priorityValue = Integer.parseInt(priority.get());
+
+        if (!Priority.isValidPriority(priorityValue)) {
+            throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
+        }
+
+        return Optional.of(Priority.fromInt(priorityValue));
     }
 }

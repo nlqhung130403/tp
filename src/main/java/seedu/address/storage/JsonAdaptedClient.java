@@ -124,8 +124,9 @@ class JsonAdaptedClient {
 
         if (productPreference == null) {
             //TODO: Change this to accept Description
+            //TODO: CHANGE THIS TO ACCEPT PRIORITY
             return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags,
-                    Optional.ofNullable(null), Optional.ofNullable(null));
+                    Optional.ofNullable(null), Optional.empty(), Optional.empty());
         }
 
         if (!Frequency.isValidFrequency(frequency)) {
@@ -136,8 +137,9 @@ class JsonAdaptedClient {
         final ProductPreference modelProductPreference = new ProductPreference(productPreference, productFrequency);
 
         //TODO: Change this to accept Description
+        //TODO: CHANGE THIS TO ACCEPT PRIORITY
         return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags,
-                Optional.of(modelProductPreference), Optional.ofNullable(null));
+                Optional.of(modelProductPreference), Optional.empty(), Optional.empty());
     }
 
 }

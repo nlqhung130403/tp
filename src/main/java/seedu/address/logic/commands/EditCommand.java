@@ -26,6 +26,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.Priority;
 import seedu.address.model.client.ProductPreference;
 import seedu.address.model.tag.Tag;
 
@@ -104,10 +105,12 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
         Optional<ProductPreference> updatedProductPreference =
                 editClientDescriptor.getProductPreference().or(() -> clientToEdit.getProductPreference());
-
+        Optional<Priority> updatedPriority = editClientDescriptor.getPriority().or(() -> clientToEdit.getPriority());
         //TODO: Modify this to include description
+        //TODO: Modify this to include PRIORITY
         return new Client(updatedName, updatedPhone, updatedEmail,
-                updatedAddress, updatedTags, updatedProductPreference, Optional.ofNullable(null));
+                updatedAddress, updatedTags, updatedProductPreference, Optional.ofNullable(null),
+                updatedPriority);
     }
 
     @Override
@@ -144,7 +147,8 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
-        private Optional<ProductPreference> productPreference = Optional.ofNullable(null);
+        private Optional<ProductPreference> productPreference = Optional.empty();
+        private Optional<Priority> priority = Optional.empty();
 
         public EditClientDescriptor() {}
 
@@ -159,6 +163,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setProductPreference(toCopy.productPreference);
+            setPriority(toCopy.priority);
         }
 
         /**
@@ -198,6 +203,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setPriority(Optional<Priority> priority) {
+            this.priority = priority;
+        }
+
+        public Optional<Priority> getPriority() {
+            return priority;
         }
 
         /**
@@ -242,7 +255,8 @@ public class EditCommand extends Command {
                     && Objects.equals(email, otherEditClientDescriptor.email)
                     && Objects.equals(address, otherEditClientDescriptor.address)
                     && Objects.equals(tags, otherEditClientDescriptor.tags)
-                    && Objects.equals(productPreference, otherEditClientDescriptor.productPreference);
+                    && Objects.equals(productPreference, otherEditClientDescriptor.productPreference)
+                    && Objects.equals(priority, otherEditClientDescriptor.priority);
         }
 
         @Override
@@ -253,7 +267,8 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("address", address)
                     .add("tags", tags)
-                    .add("productPreference", productPreference.orElse(null))
+                    .add("productPreference", productPreference.map(ProductPreference::toString).orElse(""))
+                    .add("priority", priority.map(Priority::toString).orElse(""))
                     .toString();
         }
     }
