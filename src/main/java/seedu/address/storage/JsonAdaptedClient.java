@@ -123,8 +123,9 @@ class JsonAdaptedClient {
         final Set<Tag> modelTags = new HashSet<>(clientTags);
 
         if (productPreference == null) {
+            //TODO: Change this to accept Description
             return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags,
-                    Optional.ofNullable(null));
+                    Optional.ofNullable(null), Optional.ofNullable(null));
         }
 
         if (!Frequency.isValidFrequency(frequency)) {
@@ -134,8 +135,9 @@ class JsonAdaptedClient {
 
         final ProductPreference modelProductPreference = new ProductPreference(productPreference, productFrequency);
 
+        //TODO: Change this to accept Description
         return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags,
-                Optional.of(modelProductPreference));
+                Optional.of(modelProductPreference), Optional.ofNullable(null));
     }
 
 }

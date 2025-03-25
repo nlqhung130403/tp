@@ -105,8 +105,9 @@ public class EditCommand extends Command {
         Optional<ProductPreference> updatedProductPreference =
                 editClientDescriptor.getProductPreference().or(() -> clientToEdit.getProductPreference());
 
+        //TODO: Modify this to include description
         return new Client(updatedName, updatedPhone, updatedEmail,
-                updatedAddress, updatedTags, updatedProductPreference);
+                updatedAddress, updatedTags, updatedProductPreference, Optional.ofNullable(null));
     }
 
     @Override
