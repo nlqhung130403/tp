@@ -30,6 +30,7 @@ public class TypicalClients {
             .withTags("friends")
             .withTotalPurchase(10)
             .withProductPreference("shampoo")
+            .withDescription("Loves shampoo.")
             .build();
     public static final Client BENSON = new ClientBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
@@ -38,6 +39,7 @@ public class TypicalClients {
             .withTags("owesMoney", "friends")
             .withTotalPurchase(9)
             .withProductPreference("cherry shampoo")
+            .withDescription("Loves Cherry Shampoo.")
             .build();
     public static final Client CARL = new ClientBuilder().withName("Carl Kurz")
             .withPhone("95352563")
@@ -45,6 +47,7 @@ public class TypicalClients {
             .withAddress("wall street")
             .withTotalPurchase(4)
             .withProductPreference("coffee book")
+            .withDescription("Loves coffee and reading.")
             .build();
     public static final Client DANIEL = new ClientBuilder().withName("Daniel Meier")
             .withPhone("87652533")
@@ -53,6 +56,7 @@ public class TypicalClients {
             .withTags("friends")
             .withTotalPurchase(2)
             .withProductPreference("recipe book")
+            .withDescription("Loves cooking.")
             .build();
     public static final Client ELLE = new ClientBuilder().withName("Elle Meyer")
             .withPhone("19482224")
@@ -60,6 +64,7 @@ public class TypicalClients {
             .withAddress("michegan ave")
             .withTotalPurchase(5)
             .withProductPreference("tea cup")
+            .withDescription("Loves tea.")
             .build();
     public static final Client FIONA = new ClientBuilder().withName("Fiona Kunz")
             .withPhone("19482427")
@@ -67,6 +72,7 @@ public class TypicalClients {
             .withAddress("little tokyo")
             .withTotalPurchase(6)
             .withProductPreference("coffee cup")
+            .withDescription("Loves coffee.")
             .build();
     public static final Client GEORGE = new ClientBuilder().withName("George Best")
             .withPhone("19482442")
@@ -74,6 +80,7 @@ public class TypicalClients {
             .withAddress("4th street")
             .withTotalPurchase(3)
             .withProductPreference("tea bag")
+            .withDescription("Loves tea.")
             .build();
 
     // Manually added
@@ -83,6 +90,7 @@ public class TypicalClients {
             .withAddress("little india")
             .withTotalPurchase(5)
             .withProductPreference("shampoo")
+            .withDescription("Potential client for shampoo.")
             .build();
     public static final Client IDA = new ClientBuilder().withName("Ida Mueller")
             .withPhone("84872131")
@@ -90,14 +98,17 @@ public class TypicalClients {
             .withAddress("chicago ave")
             .withTotalPurchase(2)
             .withProductPreference("coffee")
+            .withDescription("Potential client for coffee.")
             .build();
 
     // Manually added - Client's details found in {@code CommandTestUtil}
+    //TODO: Update this with Product Preference and Description
     public static final Client AMY = new ClientBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
+    //Bob's product preference and description are empty
     public static final Client BOB = new ClientBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-            .build();
+            .withTotalPurchase(0).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

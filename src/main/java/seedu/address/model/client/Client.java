@@ -27,13 +27,14 @@ public class Client {
     private final Set<Tag> tags = new HashSet<>();
     private final int totalPurchase;
     private final Optional<ProductPreference> productPreference;
+    private final Optional<Description> description;
 
     /**
      * Every field must be present and not null.
      */
     public Client(Name name, Phone phone, Email email, Address address,
-                  Set<Tag> tags, Optional<ProductPreference> productPreference) {
-        requireAllNonNull(name, phone, email, address, tags);
+                  Set<Tag> tags, Optional<ProductPreference> productPreference, Optional<Description> description) {
+        requireAllNonNull(name, phone, email, address, tags, productPreference, description);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -42,6 +43,7 @@ public class Client {
         this.productPreference = productPreference;
         this.totalPurchase = productPreference
                 .map(x -> x.getFrequency().frequency).orElse(0);
+        this.description = description;
     }
 
 
@@ -67,6 +69,10 @@ public class Client {
 
     public Optional<ProductPreference> getProductPreference() {
         return productPreference;
+    }
+
+    public Optional<Description> getDescription() {
+        return description;
     }
 
     /**
@@ -129,6 +135,9 @@ public class Client {
                 .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
+                .add("productPreference", productPreference.map(ProductPreference::toString).orElse(""))
+                .add("totalPurchase", totalPurchase)
+                .add("description", description.map(Description::toString).orElse(""))
                 .toString();
     }
 
