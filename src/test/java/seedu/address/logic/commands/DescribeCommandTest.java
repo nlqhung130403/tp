@@ -75,7 +75,8 @@ public class DescribeCommandTest {
     @Test
     public void execute_invalidClientIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getSortedFilteredClientList().size() + 1);
-        EditCommand.EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditCommand.EditClientDescriptor descriptor = new EditClientDescriptorBuilder()
+                .withName(VALID_NAME_BOB).build();
         DescribeCommand describeCommand = new DescribeCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(describeCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
