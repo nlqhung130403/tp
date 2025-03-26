@@ -85,18 +85,25 @@ help
 
 ### Adding a client: `add`
 
-Adds a client to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Adds a client to the address book by just typing:
+```
+add
+```
+Format: `add name/NAME phone/PHONE_NUMBER email/EMAIL address/ADDRESS [tag/TAG] [pref/preference] [freq/frequency]
 
 <box type="tip" seamless>
 
-**Tip:** A client can have any number of tags (including 0)
+- A client can have any number of tags (including 0)  
+- When there is a preference then there should be a frequency. If not, then frequency will be 0 by default. While preference is also optional like tag.  
+- Phone: Only number digits (0-9) of length 8 without spaces  
+- Name: Only case-sensitive alphabets (a-z) and one space between each word  
+- Address: Any input is ok (if only alphabet and number, then user can not input “#”)  
 </box>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add name/John Doe phone/98765432 email/johnd@example.com address/John street, block 123, #01-01`  
+* `add name/Betsy Crowe phone/98765432 email/betsycrowe@example.com address/Newgate Prison tag/criminal pref/tea bag freq/7`
+![result for 'add'](images/AddCommandUiResult.png)
 
 ### Listing all clients : `list`
 
@@ -106,7 +113,7 @@ Ready to see all your amazing contacts? Just type:
 list
 ```
 
-* This command will display a complete list of every client in your address book, so you can easily check out all your contacts at a glance. Enjoy the view!
+* This command will display a complete list of every client in your address book, so you can easily check out all your contacts at a glance. Enjoy the view!<br>
 ![result for 'list'](images/ListCommandUiResult.png)
 
 ### Editing a client : `edit`
@@ -290,10 +297,12 @@ _Details coming soon ..._
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add**    | `add name/NAME phone/PHONE_NUMBER email/EMAIL address/ADDRESS [tag/TAG] [pref/PRRODUCT_PREFERENCE] [freq/PRODUCT_FREQUENCY]…​` <br> e.g., `add name/James Ho phone/22224444 email/jamesho@example.com address/123, Clementi Rd, 1234665 tag/friend tag/colleague pref/Shampoo freq/10`
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Edit**   | `edit INDEX [name/NAME] [phone/PHONE_NUMBER] [email/EMAIL] [address/ADDRESS] [tag/TAG] [pref/PRODUCT_PREFERENCE] [freq/PRODUCT_FREQUENCY]…​`<br> e.g.,`edit 2 name/James Lee email/jameslee@example.com`
+**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`, `find friends`, `find shampoo`
 **List**   | `list`
 **Help**   | `help`
+**Rank**   | `rank KEYWORD` <br> e.g., `rank total` `rank name`
+**Expand** | `expand INDEX` <br> e.g., `expand 1`
