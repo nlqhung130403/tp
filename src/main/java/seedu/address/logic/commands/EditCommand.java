@@ -108,9 +108,8 @@ public class EditCommand extends Command {
         Optional<Description> updatedDescription =
                 editClientDescriptor.getDescription().or(() -> Optional.ofNullable(null));
 
-        //TODO: Modify this to include description
         return new Client(updatedName, updatedPhone, updatedEmail,
-                updatedAddress, updatedTags, updatedProductPreference, Optional.ofNullable(null));
+                updatedAddress, updatedTags, updatedProductPreference);
     }
 
     @Override

@@ -6,7 +6,6 @@ import java.util.Set;
 
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
-import seedu.address.model.client.Description;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Frequency;
 import seedu.address.model.client.Name;
@@ -26,7 +25,6 @@ public class ClientBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_PRODUCT_PREFERENCE = "Shampoo";
     public static final int DEFAULT_TOTAL_PURCHASE = 0;
-    public static final String DEFAULT_DESCRIPTION = "Likes to buy shampoo";
 
     private Name name;
     private Phone phone;
@@ -35,7 +33,6 @@ public class ClientBuilder {
     private Set<Tag> tags;
     private Optional<ProductPreference> productPreference;
     private int totalPurchase;
-    private Optional<Description> description;
 
     /**
      * Creates a {@code ClientBuilder} with the default details.
@@ -49,7 +46,7 @@ public class ClientBuilder {
         totalPurchase = DEFAULT_TOTAL_PURCHASE;
         productPreference = Optional
                 .of(new ProductPreference(DEFAULT_PRODUCT_PREFERENCE, new Frequency(DEFAULT_TOTAL_PURCHASE)));
-        description = Optional.of(new Description(DEFAULT_DESCRIPTION));
+
     }
 
     /**
@@ -124,32 +121,8 @@ public class ClientBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code Description} of the {@code Client} that we are building.
-     */
-    public ClientBuilder withDescription(String description) {
-        this.description = Optional.of(new Description(description));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Description} of the {@code Client} that we are building to be empty.
-     */
-    public ClientBuilder withEmptyProductPreference() {
-        this.productPreference = Optional.empty();
-        return this;
-    }
-
-    /**
-     * Sets the {@code Description} of the {@code Client} that we are building to be empty.
-     */
-    public ClientBuilder withEmptyDescription() {
-        this.description = Optional.empty();
-        return this;
-    }
-
     public Client build() {
-        return new Client(name, phone, email, address, tags, productPreference, description);
+        return new Client(name, phone, email, address, tags, productPreference);
     }
 
 }
