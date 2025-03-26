@@ -176,8 +176,8 @@ public class ParserUtil {
 
         int priorityValue = Integer.parseInt(priority.get());
 
-        if (!Priority.isValidPriority(priorityValue)) {
-            throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
+        if (!Priority.isValidIntegerPriority(priorityValue)) {
+            throw new ParseException(Priority.MESSAGE_CONSTRAINTS_INT);
         }
 
         return Optional.of(Priority.fromInt(priorityValue));

@@ -18,6 +18,7 @@ import seedu.address.model.client.Email;
 import seedu.address.model.client.Frequency;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.Priority;
 import seedu.address.model.client.ProductPreference;
 import seedu.address.model.tag.Tag;
 
@@ -37,6 +38,8 @@ class JsonAdaptedClient {
     private final String productPreference;
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     private final int frequency;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private final String priority;
 
     /**
      * Constructs a {@code JsonAdaptedClient} with the given client details.
@@ -46,7 +49,8 @@ class JsonAdaptedClient {
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
                              @JsonProperty("productPreference") String productPreference,
-                             @JsonProperty("frequency") int frequency) {
+                             @JsonProperty("frequency") int frequency,
+                             @JsonProperty("priority") String priority) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -56,6 +60,7 @@ class JsonAdaptedClient {
         }
         this.productPreference = productPreference;
         this.frequency = frequency;
+        this.priority = priority;
     }
 
     /**
@@ -75,6 +80,9 @@ class JsonAdaptedClient {
         frequency = source.getProductPreference()
                 .map(preference -> preference.getFrequency().frequency)
                 .orElse(0);
+        priority = source.getPriority()
+                .map(Priority::toString)
+                .orElse(null);
     }
 
     /**
@@ -122,11 +130,12 @@ class JsonAdaptedClient {
 
         final Set<Tag> modelTags = new HashSet<>(clientTags);
 
+        final Priority modelPriority = priority == null ? null : Priority.fromString(priority);
+
         if (productPreference == null) {
             //TODO: Change this to accept Description
-            //TODO: CHANGE THIS TO ACCEPT PRIORITY
             return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags,
-                    Optional.ofNullable(null), Optional.empty(), Optional.empty());
+                    Optional.empty(), Optional.empty(), Optional.ofNullable(modelPriority));
         }
 
         if (!Frequency.isValidFrequency(frequency)) {
@@ -136,10 +145,10 @@ class JsonAdaptedClient {
 
         final ProductPreference modelProductPreference = new ProductPreference(productPreference, productFrequency);
 
+
         //TODO: Change this to accept Description
-        //TODO: CHANGE THIS TO ACCEPT PRIORITY
         return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags,
-                Optional.of(modelProductPreference), Optional.empty(), Optional.empty());
+                Optional.of(modelProductPreference), Optional.empty(), Optional.ofNullable(modelPriority));
     }
 
 }

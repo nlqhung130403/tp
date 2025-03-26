@@ -1,6 +1,7 @@
 package seedu.address.model.client;
 
 import org.junit.jupiter.api.Test;
+import seedu.address.commons.exceptions.IllegalValueException;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -27,5 +28,12 @@ public class PriorityTest {
         assertEquals(Priority.STANDARD.toString(), "STANDARD");
         assertEquals(Priority.PREMIUM.toString(), "PREMIUM");
         assertEquals(Priority.VIP.toString(), "VIP");
+    }
+
+    @Test
+    public void fromStringTest_validString_successful() throws IllegalValueException {
+        assertEquals(Priority.fromString("STANDARD"), Priority.STANDARD);
+        assertEquals(Priority.fromString("PREMIUM"), Priority.PREMIUM);
+        assertEquals(Priority.fromString("VIP"), Priority.VIP);
     }
 }
