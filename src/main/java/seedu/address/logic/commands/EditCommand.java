@@ -106,11 +106,11 @@ public class EditCommand extends Command {
         Optional<ProductPreference> updatedProductPreference =
                 editClientDescriptor.getProductPreference().or(() -> clientToEdit.getProductPreference());
         Optional<Description> updatedDescription =
-                editClientDescriptor.getDescription().or(() -> Optional.ofNullable(null));
+                editClientDescriptor.getDescription().or(() -> clientToEdit.getDescription());
 
         //TODO: Modify this to include description
         return new Client(updatedName, updatedPhone, updatedEmail,
-                updatedAddress, updatedTags, updatedProductPreference, Optional.ofNullable(null));
+                updatedAddress, updatedTags, updatedProductPreference, updatedDescription);
     }
 
     @Override
@@ -148,7 +148,7 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
         private Optional<ProductPreference> productPreference = Optional.ofNullable(null);
-        private Description description;
+        private Optional<Description> description = Optional.ofNullable(null);
 
         public EditClientDescriptor() {}
 
@@ -230,12 +230,12 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
-        public void setDescription(Description description) {
+        public void setDescription(Optional<Description> description) {
             this.description = description;
         }
 
         public Optional<Description> getDescription() {
-            return Optional.ofNullable(description);
+            return description;
         }
 
         @Override
@@ -267,7 +267,7 @@ public class EditCommand extends Command {
                     .add("address", address)
                     .add("tags", tags)
                     .add("productPreference", productPreference.orElse(null))
-                    .add("description", description)
+                    .add("description", description.orElse(null))
                     .toString();
         }
     }
