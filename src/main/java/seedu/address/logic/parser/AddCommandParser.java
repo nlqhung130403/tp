@@ -54,7 +54,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Optional<ProductPreference> productPreference = ParserUtil
                 .parseProductPreference(argMultimap.getValue(PREFIX_PREFERENCE), frequency);
 
-        Client client = new Client(name, phone, email, address, tagList, productPreference);
+        Client client = new Client(name, phone, email, address, tagList, productPreference, Optional.ofNullable(null));
 
         return new AddCommand(client);
     }
