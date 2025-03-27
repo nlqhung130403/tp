@@ -167,6 +167,18 @@ public class ParserUtil {
                 .map(Frequency::new);
     }
 
+    /**
+     * Parses an {@code Optional<String>} into an {@code Optional<Priority>}.
+     * <p>
+     * Leading and trailing whitespaces will be trimmed. If the input value is empty,
+     * this method returns {@code Optional.empty()}. Otherwise, it attempts to parse
+     * the trimmed string as an integer, then wraps it in a {@code Priority} object.
+     *
+     * @param priority The optional string that may represent a priority.
+     * @return An Optional containing a {@code Priority} if the string is present and valid,
+     *         or {@code Optional.empty()} if not.
+     * @throws ParseException If the string cannot be parsed into an integer or otherwise invalid.
+     */
     public static Optional<Priority> parsePriority(Optional<String> priority) throws ParseException {
         requireNonNull(priority);
 
