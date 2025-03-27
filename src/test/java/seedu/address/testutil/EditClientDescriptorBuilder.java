@@ -5,7 +5,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.DescribeCommand;
 import seedu.address.logic.commands.EditCommand.EditClientDescriptor;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
@@ -101,14 +100,6 @@ public class EditClientDescriptorBuilder {
      */
     public EditClientDescriptorBuilder withProductPreference(String productPreference) {
         descriptor.setProductPreference(Optional.of(new ProductPreference(productPreference, new Frequency(0))));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Description} of the {@code EditClientDescriptor} that we are building.
-     */
-    public EditClientDescriptorBuilder withDescription(String description) {
-        descriptor.setDescription(Optional.of(new Description(description)));
         return this;
     }
 

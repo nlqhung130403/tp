@@ -217,10 +217,6 @@ public class EditCommand extends Command {
             this.productPreference = productPreference;
         }
 
-        public void setDescription(Optional<Description> description) {
-
-        }
-
         public Optional<ProductPreference> getProductPreference() {
             return productPreference;
         }

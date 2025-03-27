@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_PREFERENCE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -38,10 +38,10 @@ public class DescribeCommandTest {
 
         Client clientInFilteredList = model.getSortedFilteredClientList().get(INDEX_FIRST_PERSON.getZeroBased());
         Client editedClient = new ClientBuilder(clientInFilteredList).withName(VALID_NAME_BOB)
-                .withDescription(VALID_DESCRIPTION_PREFERENCE).build();
+                .withDescription(VALID_DESCRIPTION).build();
         DescribeCommand describeCommand = new DescribeCommand(INDEX_FIRST_PERSON,
                 new EditClientDescriptorBuilder().withName(VALID_NAME_BOB)
-                        .withDescription(VALID_DESCRIPTION_PREFERENCE).build());
+                        .withDescription(VALID_DESCRIPTION).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedClient));
 
