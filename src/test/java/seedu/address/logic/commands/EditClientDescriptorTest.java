@@ -66,7 +66,8 @@ public class EditClientDescriptorTest {
                 + editClientDescriptor.getEmail().orElse(null) + ", address="
                 + editClientDescriptor.getAddress().orElse(null) + ", tags="
                 + editClientDescriptor.getTags().orElse(null) + ", productPreference="
-                + editClientDescriptor.getProductPreference().orElse(null) + "}";
+                + editClientDescriptor.getProductPreference().orElse(null) + ", description="
+                + editClientDescriptor.getDescription().orElse(null) + "}";
         assertEquals(expected, editClientDescriptor.toString());
     }
 }
