@@ -9,12 +9,15 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
+import javafx.beans.WeakInvalidationListener;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Description;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
@@ -33,6 +36,7 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_DESCRIPTION = "This customer like shinny things!";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -192,5 +196,29 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseDescription_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDescription((Optional<String>) null));
+    }
+
+    @Test
+    public void parseDescription_validValueWithoutWhitespace_returnsDescription() {
+        Optional<Description> expectedDescription = Optional.of(new Description(VALID_DESCRIPTION));
+        assertEquals(expectedDescription, ParserUtil.parseDescription(Optional.of(VALID_DESCRIPTION)));
+    }
+
+    @Test
+    public void parseDescription_validValueWithWhitespace_returnsTrimmedDescription() {
+        String descriptionWithWhiteSpace = WHITESPACE + VALID_DESCRIPTION + WHITESPACE;
+        Optional<Description> expectedDescription = Optional.of(new Description(VALID_DESCRIPTION));
+        assertEquals(expectedDescription, ParserUtil.parseDescription(Optional.of(descriptionWithWhiteSpace)));
+    }
+
+    @Test
+    public void parseDescription_emptyDescription_returnsOptionalEmpty() {
+        Optional<Description> expectedDescription = Optional.empty();
+        assertEquals(expectedDescription, ParserUtil.parseDescription(Optional.empty()));
     }
 }

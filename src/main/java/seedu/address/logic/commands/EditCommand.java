@@ -23,6 +23,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.Description;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
@@ -210,6 +211,10 @@ public class EditCommand extends Command {
 
         public void setProductPreference(Optional<ProductPreference> productPreference) {
             this.productPreference = productPreference;
+        }
+
+        public void setDescription(Optional<Description> description) {
+
         }
 
         public Optional<ProductPreference> getProductPreference() {

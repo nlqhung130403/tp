@@ -1,12 +1,15 @@
 package seedu.address.testutil;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import seedu.address.logic.commands.DescribeCommand;
 import seedu.address.logic.commands.EditCommand.EditClientDescriptor;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.Description;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
@@ -78,6 +81,16 @@ public class EditClientDescriptorBuilder {
     public EditClientDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code description} into an {@code Optional<Tag>} and set it to the {@code EditClientDescriptor}
+     * that we are building.
+     */
+    public EditClientDescriptorBuilder withDescription(String description) {
+        Optional<Description> descriptionOptional = Optional.of(new Description(description));
+        descriptor.setDescription(descriptionOptional);
         return this;
     }
 
