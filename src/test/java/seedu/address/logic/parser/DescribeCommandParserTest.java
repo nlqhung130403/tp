@@ -1,8 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -47,7 +47,9 @@ public class DescribeCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a saf", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DescribeCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, "b", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DescribeCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a saf", String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT, DescribeCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "b", String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT, DescribeCommand.MESSAGE_USAGE));
     }
 }
