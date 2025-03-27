@@ -40,14 +40,15 @@ public class DescribeCommand extends EditCommand {
         }
 
         DescribeCommand otherDescribeCommand = (DescribeCommand) other;
-        return true;
+        return index.equals(otherDescribeCommand.index)
+                && editClientDescriptor.equals(otherDescribeCommand.editClientDescriptor);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("index", "INDEX")
-                .add("editClientDescriptor", "DESCRIPTOR")
+                .add("index", index)
+                .add("editClientDescriptor", editClientDescriptor)
                 .toString();
     }
 }

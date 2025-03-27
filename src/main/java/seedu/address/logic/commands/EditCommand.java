@@ -55,8 +55,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This client already exists in the address book.";
 
-    private final Index index;
-    private final EditClientDescriptor editClientDescriptor;
+    protected final Index index;
+    protected final EditClientDescriptor editClientDescriptor;
 
     /**
      * @param index of the client in the filtered client list to edit
@@ -105,10 +105,12 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
         Optional<ProductPreference> updatedProductPreference =
                 editClientDescriptor.getProductPreference().or(() -> clientToEdit.getProductPreference());
+        Optional<Description> updatedDescription =
+                editClientDescriptor.getDescription().or(() -> clientToEdit.getDescription());
 
         //TODO: Modify this to include description
         return new Client(updatedName, updatedPhone, updatedEmail,
-                updatedAddress, updatedTags, updatedProductPreference, Optional.ofNullable(null));
+                updatedAddress, updatedTags, updatedProductPreference, updatedDescription);
     }
 
     @Override
@@ -146,6 +148,7 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
         private Optional<ProductPreference> productPreference = Optional.ofNullable(null);
+        private Optional<Description> description = Optional.ofNullable(null);
 
         public EditClientDescriptor() {}
 
@@ -160,6 +163,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setProductPreference(toCopy.productPreference);
+            setDescription(toCopy.description);
         }
 
         /**
@@ -230,6 +234,14 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setDescription(Optional<Description> description) {
+            this.description = description;
+        }
+
+        public Optional<Description> getDescription() {
+            return description;
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -259,6 +271,7 @@ public class EditCommand extends Command {
                     .add("address", address)
                     .add("tags", tags)
                     .add("productPreference", productPreference.orElse(null))
+                    .add("description", description.orElse(null))
                     .toString();
         }
     }
