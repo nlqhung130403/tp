@@ -86,18 +86,20 @@ public class EditClientDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code ProductPreference} of the {@code EditClientDescriptor} that we are building.
+     * Parses the {@code description} into an {@code Optional<Tag>} and set it to the {@code EditClientDescriptor}
+     * that we are building.
      */
-    public EditClientDescriptorBuilder withProductPreference(String productPreference) {
-        descriptor.setProductPreference(Optional.of(new ProductPreference(productPreference, new Frequency(0))));
+    public EditClientDescriptorBuilder withDescription(String description) {
+        Optional<Description> descriptionOptional = Optional.of(new Description(description));
+        descriptor.setDescription(descriptionOptional);
         return this;
     }
 
     /**
-     * Sets the {@code Description} of the {@code EditClientDescriptor} that we are building.
+     * Sets the {@code ProductPreference} of the {@code EditClientDescriptor} that we are building.
      */
-    public EditClientDescriptorBuilder withDescription(String description) {
-        descriptor.setDescription(Optional.of(new Description(description)));
+    public EditClientDescriptorBuilder withProductPreference(String productPreference) {
+        descriptor.setProductPreference(Optional.of(new ProductPreference(productPreference, new Frequency(0))));
         return this;
     }
 
