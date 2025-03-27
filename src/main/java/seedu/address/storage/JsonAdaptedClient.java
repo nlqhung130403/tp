@@ -19,6 +19,7 @@ import seedu.address.model.client.Email;
 import seedu.address.model.client.Frequency;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.Priority;
 import seedu.address.model.client.ProductPreference;
 import seedu.address.model.tag.Tag;
 
@@ -40,6 +41,8 @@ class JsonAdaptedClient {
     private final int frequency;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private final String description;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private final String priority;
 
     /**
      * Constructs a {@code JsonAdaptedClient} with the given client details.
@@ -50,7 +53,8 @@ class JsonAdaptedClient {
                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
                              @JsonProperty("productPreference") String productPreference,
                              @JsonProperty("frequency") int frequency,
-                             @JsonProperty("description") String description) {
+                             @JsonProperty("description") String description,
+                             @JsonProperty("priority") String priority) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -61,6 +65,7 @@ class JsonAdaptedClient {
         this.productPreference = productPreference;
         this.frequency = frequency;
         this.description = description;
+        this.priority = priority;
     }
 
     /**
@@ -82,6 +87,9 @@ class JsonAdaptedClient {
                 .orElse(0);
         description = source.getDescription()
                 .map(Description::toString)
+                .orElse(null);
+        priority = source.getPriority()
+                .map(Priority::toString)
                 .orElse(null);
     }
 
@@ -132,6 +140,8 @@ class JsonAdaptedClient {
 
         final Optional<ProductPreference> modelProductPreference;
 
+        final Priority modelPriority = priority == null ? null : Priority.fromString(priority);
+
         if (productPreference == null) {
             modelProductPreference = Optional.empty();
         } else {
@@ -156,7 +166,7 @@ class JsonAdaptedClient {
         }
 
         return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags,
-                modelProductPreference, modelDescription);
+                modelProductPreference, modelDescription, Optional.ofNullable(modelPriority));
     }
 
 }

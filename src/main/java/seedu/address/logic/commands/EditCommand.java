@@ -27,6 +27,7 @@ import seedu.address.model.client.Description;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.Priority;
 import seedu.address.model.client.ProductPreference;
 import seedu.address.model.tag.Tag;
 
@@ -108,9 +109,10 @@ public class EditCommand extends Command {
         Optional<Description> updatedDescription =
                 editClientDescriptor.getDescription().or(() -> clientToEdit.getDescription());
 
-        //TODO: Modify this to include description
+        Optional<Priority> updatedPriority = editClientDescriptor.getPriority().or(() -> clientToEdit.getPriority());
+
         return new Client(updatedName, updatedPhone, updatedEmail,
-                updatedAddress, updatedTags, updatedProductPreference, updatedDescription);
+                updatedAddress, updatedTags, updatedProductPreference, updatedDescription, updatedPriority);
     }
 
     @Override
@@ -149,6 +151,7 @@ public class EditCommand extends Command {
         private Set<Tag> tags;
         private Optional<ProductPreference> productPreference = Optional.ofNullable(null);
         private Optional<Description> description = Optional.ofNullable(null);
+        private Optional<Priority> priority = Optional.empty();
 
         public EditClientDescriptor() {}
 
@@ -164,6 +167,7 @@ public class EditCommand extends Command {
             setTags(toCopy.tags);
             setProductPreference(toCopy.productPreference);
             setDescription(toCopy.description);
+            setPriority(toCopy.priority);
         }
 
         /**
@@ -203,6 +207,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setPriority(Optional<Priority> priority) {
+            this.priority = priority;
+        }
+
+        public Optional<Priority> getPriority() {
+            return priority;
         }
 
         /**
@@ -268,6 +280,7 @@ public class EditCommand extends Command {
                     .add("tags", tags)
                     .add("productPreference", productPreference.orElse(null))
                     .add("description", description.orElse(null))
+                    .add("priority", priority.orElse(null))
                     .toString();
         }
     }

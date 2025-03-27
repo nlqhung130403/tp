@@ -47,7 +47,7 @@ public class JsonAdaptedClientTest {
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedClient client =
                 new JsonAdaptedClient(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS,
-                        VALID_PRODUCT_PREFERENCE, VALID_FREQUENCY, VALID_DESCRIPTION);
+                        VALID_PRODUCT_PREFERENCE, VALID_FREQUENCY, VALID_DESCRIPTION, "VIP");
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
@@ -55,7 +55,7 @@ public class JsonAdaptedClientTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedClient client = new JsonAdaptedClient(null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS,
-                VALID_PRODUCT_PREFERENCE, VALID_FREQUENCY, VALID_DESCRIPTION);
+                VALID_PRODUCT_PREFERENCE, VALID_FREQUENCY, VALID_DESCRIPTION, "VIP");
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
@@ -64,7 +64,7 @@ public class JsonAdaptedClientTest {
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedClient client =
                 new JsonAdaptedClient(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS,
-                        VALID_PRODUCT_PREFERENCE, VALID_FREQUENCY, VALID_DESCRIPTION);
+                        VALID_PRODUCT_PREFERENCE, VALID_FREQUENCY, VALID_DESCRIPTION, "VIP");
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
@@ -72,7 +72,7 @@ public class JsonAdaptedClientTest {
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedClient client = new JsonAdaptedClient(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS,
-                VALID_PRODUCT_PREFERENCE, VALID_FREQUENCY, VALID_DESCRIPTION);
+                VALID_PRODUCT_PREFERENCE, VALID_FREQUENCY, VALID_DESCRIPTION, "VIP");
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
@@ -81,7 +81,7 @@ public class JsonAdaptedClientTest {
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedClient client =
                 new JsonAdaptedClient(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS, VALID_TAGS,
-                        VALID_PRODUCT_PREFERENCE, VALID_FREQUENCY, VALID_DESCRIPTION);
+                        VALID_PRODUCT_PREFERENCE, VALID_FREQUENCY, VALID_DESCRIPTION, "VIP");
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
@@ -89,7 +89,7 @@ public class JsonAdaptedClientTest {
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedClient client = new JsonAdaptedClient(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS, VALID_TAGS,
-                VALID_PRODUCT_PREFERENCE, VALID_FREQUENCY, VALID_DESCRIPTION);
+                VALID_PRODUCT_PREFERENCE, VALID_FREQUENCY, VALID_DESCRIPTION, "VIP");
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
@@ -98,7 +98,7 @@ public class JsonAdaptedClientTest {
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedClient client =
                 new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS, VALID_TAGS,
-                        VALID_PRODUCT_PREFERENCE, VALID_FREQUENCY, VALID_DESCRIPTION);
+                        VALID_PRODUCT_PREFERENCE, VALID_FREQUENCY, VALID_DESCRIPTION, "VIP");
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
@@ -106,7 +106,7 @@ public class JsonAdaptedClientTest {
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedClient client = new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_TAGS,
-                VALID_PRODUCT_PREFERENCE, VALID_FREQUENCY, VALID_DESCRIPTION);
+                VALID_PRODUCT_PREFERENCE, VALID_FREQUENCY, VALID_DESCRIPTION, "VIP");
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
@@ -117,7 +117,7 @@ public class JsonAdaptedClientTest {
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedClient client =
                 new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, invalidTags,
-                        VALID_PRODUCT_PREFERENCE, VALID_FREQUENCY, VALID_DESCRIPTION);
+                        VALID_PRODUCT_PREFERENCE, VALID_FREQUENCY, VALID_DESCRIPTION, "VIP");
         assertThrows(IllegalValueException.class, client::toModelType);
     }
 
@@ -131,7 +131,8 @@ public class JsonAdaptedClientTest {
                 VALID_TAGS,
                 VALID_PRODUCT_PREFERENCE,
                 INVALID_FREQUENCY,
-                VALID_DESCRIPTION
+                VALID_DESCRIPTION,
+                "VIP"
         );
         String expectedMessage = seedu.address.model.client.Frequency.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
@@ -147,7 +148,8 @@ public class JsonAdaptedClientTest {
                 VALID_TAGS,
                 VALID_PRODUCT_PREFERENCE,
                 VALID_FREQUENCY,
-                INVALID_DESCRIPTION
+                INVALID_DESCRIPTION,
+                "VIP"
         );
         String expectedMessage = seedu.address.model.client.Description.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
