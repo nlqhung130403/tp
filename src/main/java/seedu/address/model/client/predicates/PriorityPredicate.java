@@ -1,10 +1,14 @@
 package seedu.address.model.client.predicates;
 
+import java.util.Optional;
+import java.util.function.Predicate;
+
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Priority;
 
-import java.util.Optional;
-import java.util.function.Predicate;
+/**
+ * Tests that a {@code Client}'s {@code Priority} matches the priority given.
+ */
 
 public class PriorityPredicate implements Predicate<Client> {
     private final Optional<Priority> priority;

@@ -1,16 +1,17 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.function.Predicate;
+
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.client.Client;
-import seedu.address.model.client.predicates.PriorityPredicate;
-import seedu.address.model.client.predicates.ProductPreferenceContainsKeywordsPredicate;
 
-import java.util.Optional;
-import java.util.function.Predicate;
 
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Filters all persons in the address book to display only those that match the given filter condition.
+ */
 public class FilterCommand extends Command {
     public static final String COMMAND_WORD = "filter";
 
