@@ -38,6 +38,7 @@ class JsonAdaptedClient {
     private final String productPreference;
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     private final int frequency;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private final String description;
 
     /**
