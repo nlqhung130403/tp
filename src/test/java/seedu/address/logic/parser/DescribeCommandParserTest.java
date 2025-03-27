@@ -1,15 +1,14 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DescribeCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.testutil.EditClientDescriptorBuilder;
@@ -22,14 +21,12 @@ import seedu.address.testutil.EditClientDescriptorBuilder;
  * therefore should be covered by the ParserUtilTest.
  */
 public class DescribeCommandParserTest {
-    private static final String VALID_DESCRIPTION = "This customer like shinny things!";
-    private static final String WHITESPACE = " \t\r\n";
 
     private DescribeCommandParser parser = new DescribeCommandParser();
 
     @Test
     public void parse_validArgs_returnsDescribeCommand() {
-        String userInput = "1" + WHITESPACE + VALID_DESCRIPTION;
+        String userInput = "1" + PREAMBLE_WHITESPACE + VALID_DESCRIPTION;
 
         EditCommand.EditClientDescriptor descriptor = new EditClientDescriptorBuilder()
                 .withDescription(VALID_DESCRIPTION).build();
